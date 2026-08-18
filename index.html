@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Singa Balap Scientific Calculator</title>
+<title>🦁 Singa Balap Calculator</title>
 
 <style>
 *{
@@ -12,176 +12,114 @@
     padding:0;
 }
 
-html{
-    scroll-behavior:smooth;
-}
-
 body{
     min-height:100vh;
-    font-family:Arial,Helvetica,sans-serif;
+    font-family:Arial,sans-serif;
     color:white;
     background:
-        radial-gradient(circle at 15% 20%,#432100 0%,transparent 30%),
-        radial-gradient(circle at 85% 80%,#00304a 0%,transparent 35%),
-        linear-gradient(135deg,#030509,#090d14 50%,#020406);
-    overflow-x:hidden;
+        radial-gradient(circle at 15% 20%,#482500,transparent 30%),
+        radial-gradient(circle at 85% 80%,#003c58,transparent 35%),
+        linear-gradient(135deg,#020406,#0a1018,#020406);
 }
 
 /* HEADER */
 .header{
-    width:100%;
     display:grid;
     grid-template-columns:1fr auto 1fr;
     align-items:center;
+    padding:15px 30px;
     gap:20px;
-    padding:15px 35px;
-    background:linear-gradient(
-        180deg,
-        rgba(8,12,18,.98),
-        rgba(8,12,18,.80)
-    );
-    border-bottom:1px solid #303b4a;
-    box-shadow:0 10px 40px rgba(0,0,0,.7);
-
-    /* LOGO IKUT SCROLL */
-    position:relative;
-    z-index:100;
+    border-bottom:1px solid #334152;
+    background:rgba(5,9,14,.95);
+    box-shadow:0 10px 40px #000;
 }
 
-/* LOGO KIRI */
 .logo-left{
     display:flex;
     justify-content:flex-start;
-    align-items:center;
 }
 
-.logo-left img{
-    width:85px;
-    height:85px;
-    object-fit:contain;
-    border-radius:14px;
-    filter:drop-shadow(0 0 10px rgba(255,190,0,.45));
-    transition:.3s;
-}
-
-.logo-left img:hover{
-    transform:scale(1.08);
-}
-
-/* BRAND */
-.brand{
-    text-align:center;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-}
-
-.lion{
-    width:72px;
-    height:72px;
-    border-radius:50%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:42px;
-    background:radial-gradient(
-        circle,
-        #ffc400,
-        #ff5a00 55%,
-        #260900
-    );
-    border:3px solid #ffc400;
-    box-shadow:
-        0 0 15px #ff7300,
-        0 0 40px rgba(255,120,0,.4);
-    animation:glow 2s infinite;
-}
-
-.brand h1{
-    margin-top:6px;
-    font-size:clamp(22px,4vw,36px);
-    color:#ffc400;
-    font-style:italic;
-    letter-spacing:3px;
-    text-shadow:0 0 18px rgba(255,170,0,.5);
-}
-
-.brand span{
-    margin-top:3px;
-    font-size:9px;
-    letter-spacing:4px;
-    color:#aeb9c8;
-}
-
-/* LOGO KANAN */
 .logo-right{
     display:flex;
     justify-content:flex-end;
-    align-items:center;
 }
 
+.logo-left img,
 .logo-right img{
-    width:85px;
-    height:85px;
+    width:80px;
+    height:80px;
     object-fit:contain;
-    border-radius:14px;
-    filter:drop-shadow(0 0 12px rgba(0,170,255,.45));
+    border-radius:12px;
     transition:.3s;
 }
 
+.logo-left img{
+    filter:drop-shadow(0 0 12px #ffc400);
+}
+
+.logo-right img{
+    filter:drop-shadow(0 0 12px #00bfff);
+}
+
+.logo-left img:hover,
 .logo-right img:hover{
     transform:scale(1.08);
 }
 
-.status{
-    position:absolute;
-    right:35px;
-    bottom:4px;
-    font-size:8px;
-    color:#6f7c8e;
-    letter-spacing:1px;
+.brand{
+    text-align:center;
 }
 
-.status-dot{
-    display:inline-block;
-    width:7px;
-    height:7px;
+.lion{
+    width:70px;
+    height:70px;
+    margin:auto;
     border-radius:50%;
-    background:#20ff75;
-    box-shadow:0 0 10px #20ff75;
-    margin-right:5px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:40px;
+    background:radial-gradient(circle,#ffd000,#ff5a00,#260800);
+    border:3px solid #ffc400;
+    box-shadow:0 0 30px #ff7000;
+}
+
+.brand h1{
+    margin-top:7px;
+    color:#ffc400;
+    font-size:clamp(22px,4vw,36px);
+    font-style:italic;
+    letter-spacing:3px;
+}
+
+.brand p{
+    margin-top:3px;
+    font-size:9px;
+    color:#8e9bab;
+    letter-spacing:3px;
 }
 
 /* MAIN */
 .container{
-    width:min(1450px,94%);
+    width:94%;
+    max-width:1450px;
     margin:30px auto;
     display:grid;
-    grid-template-columns:
-        minmax(250px,1fr)
-        minmax(350px,520px)
-        minmax(250px,1fr);
+    grid-template-columns:1fr minmax(350px,520px) 1fr;
     gap:20px;
 }
 
 /* CARD */
 .card{
-    background:linear-gradient(
-        145deg,
-        rgba(18,24,34,.95),
-        rgba(6,10,15,.95)
-    );
-    border:1px solid #303b4b;
+    background:linear-gradient(145deg,#121a24,#070b10);
+    border:1px solid #303d4c;
     border-radius:20px;
-    box-shadow:0 20px 60px rgba(0,0,0,.7);
-    overflow:hidden;
+    box-shadow:0 20px 60px #000;
 }
 
-/* HERO */
+/* LEFT */
 .hero{
-    min-height:700px;
     padding:35px;
-    position:relative;
 }
 
 .eyebrow{
@@ -199,27 +137,26 @@ body{
 
 .hero h2 strong{
     color:#ff6500;
-    text-shadow:0 0 20px rgba(255,90,0,.5);
 }
 
 .hero p{
     margin-top:20px;
+    color:#aab5c4;
     line-height:1.7;
-    color:#aeb8c7;
 }
 
 .features{
-    margin-top:35px;
+    margin-top:30px;
     display:grid;
-    gap:12px;
+    gap:10px;
 }
 
 .feature{
     padding:13px;
-    border:1px solid #263140;
-    border-radius:12px;
-    background:rgba(255,255,255,.025);
-    color:#c7d0dc;
+    border:1px solid #293545;
+    border-radius:11px;
+    background:#ffffff05;
+    color:#bbc5d2;
     font-size:13px;
 }
 
@@ -232,47 +169,42 @@ body{
     padding:18px;
 }
 
-/* DISPLAY */
 .display{
     min-height:140px;
     padding:15px;
-    border-radius:15px;
     border:1px solid #405064;
-    background:linear-gradient(145deg,#07121d,#0b1723);
-    box-shadow:inset 0 0 30px rgba(0,160,255,.08);
+    border-radius:15px;
+    background:linear-gradient(145deg,#06111c,#0b1825);
 }
 
 .display-top{
     display:flex;
     justify-content:space-between;
-    color:#13bfff;
+    color:#00bfff;
     font-size:10px;
     letter-spacing:2px;
 }
 
 .expression{
-    height:34px;
+    height:35px;
     margin-top:10px;
-    color:#8491a2;
     text-align:right;
-    font-size:16px;
-    overflow-x:auto;
+    color:#7d8b9c;
+    overflow:auto;
     white-space:nowrap;
 }
 
-/* ANGKA DIPERKECIL */
 .result{
-    color:#ffc400;
-    text-align:right;
-    font-size:clamp(24px,4vw,42px);
-    font-weight:900;
     min-height:48px;
     display:flex;
     align-items:center;
     justify-content:flex-end;
-    overflow-x:auto;
+    color:#ffc400;
+    font-size:clamp(24px,4vw,40px);
+    font-weight:bold;
+    overflow:auto;
     white-space:nowrap;
-    text-shadow:0 0 18px rgba(255,190,0,.4);
+    text-shadow:0 0 15px #ffc40055;
 }
 
 /* GRID */
@@ -300,24 +232,20 @@ body{
 
 /* BUTTON */
 button{
-    min-height:48px;
+    min-height:47px;
     border-radius:10px;
     border:1px solid #303d4d;
-    background:linear-gradient(
-        145deg,
-        #18222f,
-        #0c131c
-    );
-    color:#eaf0f7;
-    font-weight:800;
+    background:linear-gradient(145deg,#192432,#0b121a);
+    color:#e8eef5;
+    font-weight:bold;
     cursor:pointer;
     transition:.15s;
 }
 
 button:hover{
     transform:translateY(-2px);
-    border-color:#7b8da5;
-    box-shadow:0 7px 18px rgba(0,0,0,.6);
+    border-color:#8998aa;
+    box-shadow:0 6px 18px #000;
 }
 
 button:active{
@@ -326,20 +254,16 @@ button:active{
 
 .operator{
     color:#ffc400;
-    border-color:#6c5618;
 }
 
 .danger{
-    color:#ff5d5d;
-    border-color:#702626;
+    color:#ff6464;
 }
 
 .equals{
-    background:linear-gradient(145deg,#ffc400,#e84b00);
-    color:#090b0e;
-    border-color:#ffc400;
-    font-size:23px;
-    box-shadow:0 0 20px rgba(255,120,0,.35);
+    background:linear-gradient(145deg,#ffc400,#ec4e00);
+    color:#07090c;
+    font-size:22px;
 }
 
 .zero{
@@ -347,18 +271,68 @@ button:active{
 }
 
 .base-active{
-    background:linear-gradient(145deg,#ffc400,#e84b00);
+    background:linear-gradient(145deg,#ffc400,#e84d00);
     color:#050505;
 }
 
-/* PROGRAMMER TITLE */
+/* TITLE */
 .section-title{
-    margin-top:14px;
-    padding:8px 4px;
+    margin-top:15px;
+    padding:7px 3px;
     color:#ffc400;
     font-size:11px;
     font-weight:bold;
     letter-spacing:2px;
+}
+
+/* CONVERTER */
+.converter{
+    padding:12px;
+    border:1px solid #303d4d;
+    border-radius:14px;
+    background:linear-gradient(145deg,#101923,#070c12);
+}
+
+.converter select,
+.converter input{
+    width:100%;
+    height:45px;
+    margin-bottom:8px;
+    padding:0 12px;
+    border-radius:9px;
+    border:1px solid #344253;
+    background:#0b121a;
+    color:white;
+    outline:none;
+}
+
+.converter select:focus,
+.converter input:focus{
+    border-color:#ffc400;
+}
+
+.convert-row{
+    display:grid;
+    grid-template-columns:1fr 50px 1fr;
+    gap:7px;
+}
+
+.convert-row button{
+    min-height:45px;
+    color:#ffc400;
+    font-size:20px;
+}
+
+.convert-result{
+    margin-top:5px;
+    padding:15px;
+    border-radius:10px;
+    text-align:center;
+    background:#05090e;
+    border:1px solid #344253;
+    color:#ffc400;
+    font-weight:bold;
+    word-break:break-all;
 }
 
 /* HISTORY */
@@ -369,15 +343,15 @@ button:active{
 
 .history-title{
     color:#ffc400;
-    font-weight:900;
+    font-weight:bold;
     padding-bottom:13px;
     border-bottom:1px solid #303846;
 }
 
 .history-list{
-    margin-top:10px;
-    max-height:590px;
+    max-height:650px;
     overflow-y:auto;
+    margin-top:10px;
 }
 
 .history-item{
@@ -391,9 +365,9 @@ button:active{
 }
 
 .history-item strong{
-    color:#ffc400;
     display:block;
     margin-top:5px;
+    color:#ffc400;
 }
 
 .clear-history{
@@ -404,57 +378,37 @@ button:active{
 
 /* FOOTER */
 footer{
-    text-align:center;
     padding:25px;
+    text-align:center;
     color:#697386;
     font-size:10px;
     letter-spacing:1px;
 }
 
-/* ANIMATION */
-@keyframes glow{
-    0%,100%{
-        box-shadow:
-            0 0 15px #ff7300,
-            0 0 30px rgba(255,100,0,.2);
-    }
-
-    50%{
-        box-shadow:
-            0 0 30px #ffc400,
-            0 0 60px rgba(255,130,0,.35);
-    }
-}
-
-/* RESPONSIVE */
+/* MOBILE */
 @media(max-width:1000px){
-
     .container{
         grid-template-columns:1fr;
-    }
-
-    .hero{
-        min-height:300px;
     }
 }
 
 @media(max-width:600px){
 
     .header{
-        grid-template-columns:65px 1fr 65px;
+        grid-template-columns:55px 1fr 55px;
         padding:10px;
     }
 
     .logo-left img,
     .logo-right img{
-        width:55px;
-        height:55px;
+        width:50px;
+        height:50px;
     }
 
     .lion{
-        width:55px;
-        height:55px;
-        font-size:30px;
+        width:52px;
+        height:52px;
+        font-size:28px;
     }
 
     .brand h1{
@@ -462,18 +416,13 @@ footer{
         letter-spacing:1px;
     }
 
-    .brand span{
-        font-size:7px;
-        letter-spacing:2px;
-    }
-
-    .status{
-        display:none;
+    .brand p{
+        font-size:6px;
     }
 
     button{
-        min-height:44px;
-        font-size:11px;
+        min-height:43px;
+        font-size:10px;
     }
 
     .scientific{
@@ -483,21 +432,10 @@ footer{
     .programmer{
         grid-template-columns:repeat(2,1fr);
     }
-}
 
-/* SCROLLBAR */
-::-webkit-scrollbar{
-    width:7px;
-    height:7px;
-}
-
-::-webkit-scrollbar-track{
-    background:#080c12;
-}
-
-::-webkit-scrollbar-thumb{
-    background:linear-gradient(#ffb000,#ff4d00);
-    border-radius:10px;
+    .convert-row{
+        grid-template-columns:1fr 45px 1fr;
+    }
 }
 </style>
 </head>
@@ -513,334 +451,353 @@ footer{
 
     <div class="brand">
         <div class="lion">🦁</div>
-
         <h1>SINGA BALAP</h1>
-
-        <span>
-            SCIENTIFIC • PROGRAMMER CALCULATOR
-        </span>
+        <p>SCIENTIFIC • PROGRAMMER • CONVERTER</p>
     </div>
 
     <div class="logo-right">
         <img src="logo-rpl.jpg" alt="Logo RPL">
     </div>
 
-    <div class="status">
-        <span class="status-dot"></span>
-        SYSTEM ONLINE
-    </div>
-
 </header>
 
 
-<!-- MAIN -->
 <main class="container">
 
-    <!-- HERO -->
-    <section class="card hero">
+<!-- =====================================================
+     HERO
+===================================================== -->
 
-        <div class="eyebrow">
-            SPEED • POWER • PRECISION
+<section class="card hero">
+
+    <div class="eyebrow">
+        SPEED • POWER • PRECISION
+    </div>
+
+    <h2>
+        HITUNG
+        <br>
+        <strong>SECEPAT SINGA.</strong>
+    </h2>
+
+    <p>
+        Kalkulator futuristik bertema Singa Balap
+        dengan fungsi Basic, Scientific, Programmer,
+        dan Unit Converter.
+    </p>
+
+    <div class="features">
+
+        <div class="feature">
+            🧮 <b>Scientific</b> — √, sin, cos, tan,
+            log, ln, factorial dan lainnya.
         </div>
 
-        <h2>
-            HITUNG
-            <br>
-            <strong>SECEPAT SINGA.</strong>
-        </h2>
-
-        <p>
-            Kalkulator futuristik bertema Singa Balap
-            dengan fungsi Basic, Scientific, dan Programmer.
-        </p>
-
-        <div class="features">
-
-            <div class="feature">
-                🧮 <b>Scientific</b>
-                — Fungsi matematika lengkap
-            </div>
-
-            <div class="feature">
-                💻 <b>Programmer</b>
-                — BIN, DEC, HEX, OCT
-            </div>
-
-            <div class="feature">
-                ⚡ <b>Bitwise</b>
-                — AND, OR, XOR, NOT
-            </div>
-
-            <div class="feature">
-                🏁 <b>Racing UI</b>
-                — Tema Singa Balap
-            </div>
-
-            <div class="feature">
-                📱 <b>Responsive</b>
-                — HP, Tablet, PC
-            </div>
-
-            <div class="feature">
-                💾 <b>History</b>
-                — Riwayat perhitungan
-            </div>
-
+        <div class="feature">
+            💻 <b>Programmer</b> — BIN, DEC, HEX,
+            OCT dan operasi bitwise.
         </div>
 
-    </section>
-
-
-    <!-- CALCULATOR -->
-    <section class="card calculator">
-
-        <!-- DISPLAY -->
-        <div class="display">
-
-            <div class="display-top">
-
-                <span id="angleMode">
-                    DEG
-                </span>
-
-                <span id="baseDisplay">
-                    DEC
-                </span>
-
-            </div>
-
-            <div id="expression" class="expression">
-                0
-            </div>
-
-            <div id="result" class="result">
-                0
-            </div>
-
+        <div class="feature">
+            🔄 <b>Converter</b> — 9 kategori
+            satuan.
         </div>
 
-
-        <!-- MEMORY -->
-        <div class="button-grid memory">
-
-            <button data-memory="MC">MC</button>
-            <button data-memory="MR">MR</button>
-            <button data-memory="M+">M+</button>
-            <button data-memory="M-">M-</button>
-            <button data-memory="MS">MS</button>
-
-            <button id="angleButton">
-                DEG
-            </button>
-
+        <div class="feature">
+            💾 <b>Memory & History</b> —
+            simpan dan lihat perhitungan.
         </div>
 
-
-        <!-- SCIENTIFIC -->
-        <div class="section-title">
-            SCIENTIFIC MODE
+        <div class="feature">
+            📱 <b>Responsive</b> —
+            nyaman digunakan di HP dan PC.
         </div>
 
-        <div class="button-grid scientific">
+    </div>
 
-            <button data-function="sqrt">√</button>
-            <button data-function="square">x²</button>
-            <button data-function="power">xʸ</button>
-            <button data-function="reciprocal">1/x</button>
-            <button data-function="sign">±</button>
+</section>
 
-            <button data-function="sin">sin</button>
-            <button data-function="cos">cos</button>
-            <button data-function="tan">tan</button>
-            <button data-function="asin">asin</button>
-            <button data-function="acos">acos</button>
 
-            <button data-function="atan">atan</button>
-            <button data-function="log">log</button>
-            <button data-function="ln">ln</button>
-            <button data-function="exp">eˣ</button>
-            <button data-function="tenpower">10ˣ</button>
+<!-- =====================================================
+     CALCULATOR
+===================================================== -->
 
-            <button data-value="π">π</button>
-            <button data-value="e">e</button>
-            <button data-value="φ">φ</button>
-            <button data-function="factorial">n!</button>
-            <button data-function="modulus">mod</button>
+<section class="card calculator">
 
-            <button data-function="random">RND</button>
-            <button data-function="absolute">|x|</button>
+    <!-- DISPLAY -->
 
+    <div class="display">
+
+        <div class="display-top">
+            <span id="angleMode">DEG</span>
+            <span id="baseDisplay">DEC</span>
         </div>
 
-
-        <!-- PROGRAMMER -->
-        <div class="section-title">
-            PROGRAMMER MODE
+        <div id="expression" class="expression">
+            0
         </div>
 
-        <div class="button-grid programmer">
-
-            <button
-                class="base-button"
-                data-base="BIN">
-                BIN
-            </button>
-
-            <button
-                class="base-button"
-                data-base="DEC">
-                DEC
-            </button>
-
-            <button
-                class="base-button"
-                data-base="HEX">
-                HEX
-            </button>
-
-            <button
-                class="base-button"
-                data-base="OCT">
-                OCT
-            </button>
-
-            <button data-bitwise="AND">
-                AND
-            </button>
-
-            <button data-bitwise="OR">
-                OR
-            </button>
-
-            <button data-bitwise="XOR">
-                XOR
-            </button>
-
-            <button data-bitwise="NOT">
-                NOT
-            </button>
-
-            <button data-bitwise="SHL">
-                Shift Left
-            </button>
-
-            <button data-bitwise="SHR">
-                Shift Right
-            </button>
-
+        <div id="result" class="result">
+            0
         </div>
 
-
-        <!-- KEYPAD -->
-        <div class="section-title">
-            KEYPAD
-        </div>
-
-        <div class="button-grid keypad">
-
-            <button
-                class="danger"
-                data-action="clear">
-                AC
-            </button>
-
-            <button
-                class="danger"
-                data-action="backspace">
-                ⌫
-            </button>
-
-            <button data-value="(">
-                (
-            </button>
-
-            <button
-                class="operator"
-                data-value=")">
-                )
-            </button>
+    </div>
 
 
-            <button data-value="7">7</button>
-            <button data-value="8">8</button>
-            <button data-value="9">9</button>
+    <!-- MEMORY -->
 
-            <button
-                class="operator"
-                data-value="÷">
-                ÷
-            </button>
+    <div class="button-grid memory">
 
+        <button data-memory="MC">MC</button>
+        <button data-memory="MR">MR</button>
+        <button data-memory="M+">M+</button>
+        <button data-memory="M-">M-</button>
+        <button data-memory="MS">MS</button>
+        <button id="angleButton">DEG</button>
 
-            <button data-value="4">4</button>
-            <button data-value="5">5</button>
-            <button data-value="6">6</button>
-
-            <button
-                class="operator"
-                data-value="×">
-                ×
-            </button>
+    </div>
 
 
-            <button data-value="1">1</button>
-            <button data-value="2">2</button>
-            <button data-value="3">3</button>
+    <!-- SCIENTIFIC -->
 
-            <button
-                class="operator"
-                data-value="-">
-                −
-            </button>
+    <div class="section-title">
+        SCIENTIFIC MODE
+    </div>
+
+    <div class="button-grid scientific">
+
+        <button data-function="sqrt">√</button>
+        <button data-function="square">x²</button>
+        <button data-function="power">xʸ</button>
+        <button data-function="reciprocal">1/x</button>
+        <button data-function="sign">±</button>
+
+        <button data-function="sin">sin</button>
+        <button data-function="cos">cos</button>
+        <button data-function="tan">tan</button>
+        <button data-function="asin">asin</button>
+        <button data-function="acos">acos</button>
+
+        <button data-function="atan">atan</button>
+        <button data-function="log">log</button>
+        <button data-function="ln">ln</button>
+        <button data-function="exp">eˣ</button>
+        <button data-function="tenpower">10ˣ</button>
+
+        <button data-value="π">π</button>
+        <button data-value="e">e</button>
+        <button data-value="φ">φ</button>
+        <button data-function="factorial">n!</button>
+        <button data-function="modulus">mod</button>
+
+        <button data-function="random">RND</button>
+        <button data-function="absolute">|x|</button>
+
+    </div>
 
 
-            <button
-                class="zero"
-                data-value="0">
-                0
-            </button>
+    <!-- PROGRAMMER -->
 
-            <button data-value=".">
-                .
-            </button>
+    <div class="section-title">
+        PROGRAMMER MODE
+    </div>
 
-            <button
-                class="operator"
-                data-value="+">
-                +
-            </button>
+    <div class="button-grid programmer">
 
-
-            <button
-                class="equals"
-                data-action="equals">
-                =
-            </button>
-
-        </div>
-
-    </section>
-
-
-    <!-- HISTORY -->
-    <aside class="card history">
-
-        <div class="history-title">
-            🏁 RACE HISTORY
-        </div>
-
-        <div
-            id="historyList"
-            class="history-list">
-        </div>
-
-        <button
-            id="clearHistory"
-            class="clear-history">
-            🗑 HAPUS RIWAYAT
+        <button class="base-button" data-base="BIN">
+            BIN
         </button>
 
-    </aside>
+        <button class="base-button" data-base="DEC">
+            DEC
+        </button>
+
+        <button class="base-button" data-base="HEX">
+            HEX
+        </button>
+
+        <button class="base-button" data-base="OCT">
+            OCT
+        </button>
+
+        <button data-bitwise="AND">AND</button>
+        <button data-bitwise="OR">OR</button>
+        <button data-bitwise="XOR">XOR</button>
+        <button data-bitwise="NOT">NOT</button>
+        <button data-bitwise="SHL">Shift Left</button>
+        <button data-bitwise="SHR">Shift Right</button>
+
+    </div>
+
+
+    <!-- CONVERTER -->
+
+    <div class="section-title">
+        🦁 UNIT CONVERTER
+    </div>
+
+    <div class="converter">
+
+        <select id="converterType">
+
+            <option value="length">
+                📏 Panjang
+            </option>
+
+            <option value="weight">
+                ⚖️ Berat
+            </option>
+
+            <option value="temperature">
+                🌡️ Suhu
+            </option>
+
+            <option value="area">
+                📐 Luas
+            </option>
+
+            <option value="volume">
+                🧪 Volume
+            </option>
+
+            <option value="time">
+                ⏱️ Waktu
+            </option>
+
+            <option value="speed">
+                🏎️ Kecepatan
+            </option>
+
+            <option value="data">
+                💾 Data Digital
+            </option>
+
+            <option value="energy">
+                ⚡ Energi
+            </option>
+
+        </select>
+
+
+        <input
+            type="number"
+            id="convertInput"
+            value="1"
+            placeholder="Masukkan angka"
+        >
+
+
+        <div class="convert-row">
+
+            <select id="fromUnit"></select>
+
+            <button id="swapUnit">
+                ⇄
+            </button>
+
+            <select id="toUnit"></select>
+
+        </div>
+
+
+        <div class="convert-result">
+            <span id="convertResult">
+                Hasil: 1
+            </span>
+        </div>
+
+    </div>
+
+
+    <!-- KEYPAD -->
+
+    <div class="section-title">
+        KEYPAD
+    </div>
+
+    <div class="button-grid keypad">
+
+        <button class="danger" data-action="clear">
+            AC
+        </button>
+
+        <button class="danger" data-action="backspace">
+            ⌫
+        </button>
+
+        <button data-value="(">
+            (
+        </button>
+
+        <button class="operator" data-value=")">
+            )
+        </button>
+
+
+        <button data-value="7">7</button>
+        <button data-value="8">8</button>
+        <button data-value="9">9</button>
+        <button class="operator" data-value="÷">÷</button>
+
+
+        <button data-value="4">4</button>
+        <button data-value="5">5</button>
+        <button data-value="6">6</button>
+        <button class="operator" data-value="×">×</button>
+
+
+        <button data-value="1">1</button>
+        <button data-value="2">2</button>
+        <button data-value="3">3</button>
+        <button class="operator" data-value="-">−</button>
+
+
+        <button class="zero" data-value="0">
+            0
+        </button>
+
+        <button data-value=".">
+            .
+        </button>
+
+        <button class="operator" data-value="+">
+            +
+        </button>
+
+
+        <button class="equals" data-action="equals">
+            =
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     HISTORY
+===================================================== -->
+
+<aside class="card history">
+
+    <div class="history-title">
+        🏁 RACE HISTORY
+    </div>
+
+    <div
+        id="historyList"
+        class="history-list">
+    </div>
+
+    <button
+        id="clearHistory"
+        class="clear-history">
+
+        🗑 HAPUS RIWAYAT
+
+    </button>
+
+</aside>
 
 </main>
 
@@ -857,7 +814,7 @@ footer{
 <script>
 
 /* =====================================================
-   DATA
+   CALCULATOR
 ===================================================== */
 
 let expression = "";
@@ -867,10 +824,6 @@ let angleMode = "DEG";
 let numberBase = "DEC";
 let history = [];
 
-
-/* =====================================================
-   ELEMENT
-===================================================== */
 
 const expressionDisplay =
     document.getElementById("expression");
@@ -891,9 +844,7 @@ const baseDisplay =
     document.getElementById("baseDisplay");
 
 
-/* =====================================================
-   FORMAT
-===================================================== */
+/* FORMAT NUMBER */
 
 function formatNumber(value){
 
@@ -917,9 +868,7 @@ function formatNumber(value){
 }
 
 
-/* =====================================================
-   PREPARE EXPRESSION
-===================================================== */
+/* PREPARE */
 
 function prepareExpression(text){
 
@@ -930,25 +879,24 @@ function prepareExpression(text){
         .replaceAll("π","Math.PI")
         .replaceAll(
             "φ",
-            "((1 + Math.sqrt(5)) / 2)"
+            "((1 + Math.sqrt(5))/2)"
         )
         .replace(
             /\be\b/g,
             "Math.E"
         )
-        .replace(/\^/g,"**");
+        .replace(
+            /\^/g,
+            "**"
+        );
 }
 
 
-/* =====================================================
-   CALCULATE
-===================================================== */
+/* CALCULATE */
 
 function calculate(){
 
-    if(!expression){
-        return;
-    }
+    if(!expression) return;
 
     try{
 
@@ -968,7 +916,8 @@ function calculate(){
             result
         );
 
-        expression = result;
+        expression =
+            result;
 
         render();
 
@@ -981,9 +930,7 @@ function calculate(){
 }
 
 
-/* =====================================================
-   SCIENTIFIC
-===================================================== */
+/* SCIENTIFIC */
 
 function scientificFunction(fn){
 
@@ -993,15 +940,13 @@ function scientificFunction(fn){
 
         if(expression){
 
-            const math =
-                prepareExpression(
-                    expression
-                );
-
             number =
                 Number(
                     Function(
-                        "return " + math
+                        "return " +
+                        prepareExpression(
+                            expression
+                        )
                     )()
                 );
 
@@ -1012,46 +957,29 @@ function scientificFunction(fn){
 
         }
 
+
         let value;
 
 
-        if(fn === "sqrt"){
+        if(fn === "sqrt")
+            value = Math.sqrt(number);
 
-            value =
-                Math.sqrt(number);
-
-        }
-
-        else if(fn === "square"){
-
-            value =
-                number ** 2;
-
-        }
+        else if(fn === "square")
+            value = number ** 2;
 
         else if(fn === "power"){
 
             expression += "^";
-
             render();
-
             return;
 
         }
 
-        else if(fn === "reciprocal"){
+        else if(fn === "reciprocal")
+            value = 1 / number;
 
-            value =
-                1 / number;
-
-        }
-
-        else if(fn === "sign"){
-
-            value =
-                -number;
-
-        }
+        else if(fn === "sign")
+            value = -number;
 
         else if(fn === "sin"){
 
@@ -1059,9 +987,7 @@ function scientificFunction(fn){
                 angleMode === "DEG"
                 ?
                 Math.sin(
-                    number *
-                    Math.PI /
-                    180
+                    number*Math.PI/180
                 )
                 :
                 Math.sin(number);
@@ -1074,9 +1000,7 @@ function scientificFunction(fn){
                 angleMode === "DEG"
                 ?
                 Math.cos(
-                    number *
-                    Math.PI /
-                    180
+                    number*Math.PI/180
                 )
                 :
                 Math.cos(number);
@@ -1089,9 +1013,7 @@ function scientificFunction(fn){
                 angleMode === "DEG"
                 ?
                 Math.tan(
-                    number *
-                    Math.PI /
-                    180
+                    number*Math.PI/180
                 )
                 :
                 Math.tan(number);
@@ -1100,82 +1022,53 @@ function scientificFunction(fn){
 
         else if(fn === "asin"){
 
-            value =
-                Math.asin(number);
+            value = Math.asin(number);
 
-            if(angleMode === "DEG"){
+            if(angleMode === "DEG")
                 value =
-                    value *
-                    180 /
-                    Math.PI;
-            }
+                    value*180/Math.PI;
 
         }
 
         else if(fn === "acos"){
 
-            value =
-                Math.acos(number);
+            value = Math.acos(number);
 
-            if(angleMode === "DEG"){
+            if(angleMode === "DEG")
                 value =
-                    value *
-                    180 /
-                    Math.PI;
-            }
+                    value*180/Math.PI;
 
         }
 
         else if(fn === "atan"){
 
-            value =
-                Math.atan(number);
+            value = Math.atan(number);
 
-            if(angleMode === "DEG"){
+            if(angleMode === "DEG")
                 value =
-                    value *
-                    180 /
-                    Math.PI;
-            }
+                    value*180/Math.PI;
 
         }
 
-        else if(fn === "log"){
+        else if(fn === "log")
+            value = Math.log10(number);
 
-            value =
-                Math.log10(number);
+        else if(fn === "ln")
+            value = Math.log(number);
 
-        }
+        else if(fn === "exp")
+            value = Math.exp(number);
 
-        else if(fn === "ln"){
-
-            value =
-                Math.log(number);
-
-        }
-
-        else if(fn === "exp"){
-
-            value =
-                Math.exp(number);
-
-        }
-
-        else if(fn === "tenpower"){
-
-            value =
-                10 ** number;
-
-        }
+        else if(fn === "tenpower")
+            value = 10 ** number;
 
         else if(fn === "factorial"){
 
             if(
                 number < 0 ||
                 !Number.isInteger(number)
-            ){
+            )
                 throw new Error();
-            }
 
             value = 1;
 
@@ -1183,182 +1076,139 @@ function scientificFunction(fn){
                 let i=2;
                 i<=number;
                 i++
-            ){
+            )
                 value *= i;
-            }
 
         }
 
         else if(fn === "modulus"){
 
             expression += "%";
-
             render();
-
             return;
 
         }
 
-        else if(fn === "random"){
+        else if(fn === "random")
+            value = Math.random();
 
-            value =
-                Math.random();
-
-        }
-
-        else if(fn === "absolute"){
-
-            value =
-                Math.abs(number);
-
-        }
+        else if(fn === "absolute")
+            value = Math.abs(number);
 
 
-        if(value !== undefined){
+        result =
+            formatNumber(value);
 
-            result =
-                formatNumber(value);
+        expression =
+            result;
 
-            expression =
-                result;
-
-            render();
-
-        }
+        render();
 
     }catch(error){
 
-        result = "ERROR";
         expression = "";
+        result = "ERROR";
+
         render();
 
     }
 }
 
 
-/* =====================================================
-   PROGRAMMER - GET NUMBER
-===================================================== */
+/* MEMORY */
 
-function getProgrammerNumber(){
+function memoryFunction(action){
 
-    if(!expression){
-        return 0;
-    }
+    const current =
+        Number(result);
 
-    try{
+    if(action === "MC")
+        memory = 0;
 
-        if(numberBase === "BIN"){
-            return parseInt(
-                expression,
-                2
-            );
-        }
+    else if(action === "MR"){
 
-        if(numberBase === "HEX"){
-            return parseInt(
-                expression,
-                16
-            );
-        }
+        expression =
+            formatNumber(memory);
 
-        if(numberBase === "OCT"){
-            return parseInt(
-                expression,
-                8
-            );
-        }
-
-        return parseInt(
-            expression,
-            10
-        );
-
-    }catch(error){
-
-        return 0;
+        result = expression;
 
     }
+
+    else if(action === "M+")
+        memory += current;
+
+    else if(action === "M-")
+        memory -= current;
+
+    else if(action === "MS")
+        memory = current;
+
+    render();
 }
 
 
 /* =====================================================
-   FORMAT PROGRAMMER
+   PROGRAMMER
 ===================================================== */
+
+function getProgrammerNumber(){
+
+    if(!expression)
+        return 0;
+
+    if(numberBase === "BIN")
+        return parseInt(expression,2);
+
+    if(numberBase === "HEX")
+        return parseInt(expression,16);
+
+    if(numberBase === "OCT")
+        return parseInt(expression,8);
+
+    return parseInt(expression,10);
+}
+
 
 function formatProgrammerNumber(value){
 
     value = Math.trunc(value);
 
-    if(numberBase === "BIN"){
+    if(numberBase === "BIN")
+        return (value >>> 0).toString(2);
 
-        return (value >>> 0)
-            .toString(2);
-
-    }
-
-    if(numberBase === "HEX"){
-
+    if(numberBase === "HEX")
         return (value >>> 0)
             .toString(16)
             .toUpperCase();
 
-    }
-
-    if(numberBase === "OCT"){
-
-        return (value >>> 0)
-            .toString(8);
-
-    }
+    if(numberBase === "OCT")
+        return (value >>> 0).toString(8);
 
     return value.toString();
 }
 
 
-/* =====================================================
-   CHANGE BASE
-===================================================== */
-
 function setBase(base){
 
-    try{
+    const value =
+        getProgrammerNumber();
 
-        let value =
-            getProgrammerNumber();
+    numberBase = base;
 
-        numberBase = base;
+    expression =
+        formatProgrammerNumber(value);
 
-        expression =
-            formatProgrammerNumber(
-                value
-            );
+    result = expression;
 
-        result = expression;
-
-        updateBaseButtons();
-
-        render();
-
-    }catch(error){
-
-        result = "ERROR";
-        render();
-
-    }
+    updateBaseButtons();
+    render();
 }
 
-
-/* =====================================================
-   UPDATE BASE BUTTON
-===================================================== */
 
 function updateBaseButtons(){
 
     document
-        .querySelectorAll(
-            ".base-button"
-        )
+        .querySelectorAll(".base-button")
         .forEach(button => {
 
             button.classList.remove(
@@ -1368,13 +1218,10 @@ function updateBaseButtons(){
             if(
                 button.dataset.base ===
                 numberBase
-            ){
-
+            )
                 button.classList.add(
                     "base-active"
                 );
-
-            }
 
         });
 
@@ -1383,204 +1230,86 @@ function updateBaseButtons(){
 }
 
 
-/* =====================================================
-   BITWISE
-===================================================== */
+/* BITWISE */
 
 function bitwise(operation){
 
-    try{
+    let first =
+        getProgrammerNumber();
 
-        let first =
-            getProgrammerNumber();
-
-        let second = 0;
-
-        if(
-            operation !== "NOT"
-        ){
-
-            let input =
-                prompt(
-                    "Masukkan angka kedua:"
-                );
-
-            if(
-                input === null
-            ){
-                return;
-            }
-
-            if(numberBase === "BIN"){
-
-                second =
-                    parseInt(
-                        input,
-                        2
-                    );
-
-            }
-
-            else if(
-                numberBase === "HEX"
-            ){
-
-                second =
-                    parseInt(
-                        input,
-                        16
-                    );
-
-            }
-
-            else if(
-                numberBase === "OCT"
-            ){
-
-                second =
-                    parseInt(
-                        input,
-                        8
-                    );
-
-            }
-
-            else{
-
-                second =
-                    parseInt(
-                        input,
-                        10
-                    );
-
-            }
-
-            if(
-                Number.isNaN(second)
-            ){
-
-                alert(
-                    "Angka kedua tidak valid."
-                );
-
-                return;
-
-            }
-
-        }
+    let second = 0;
 
 
-        let value;
+    if(operation !== "NOT"){
 
-
-        if(operation === "AND"){
-
-            value =
-                first & second;
-
-        }
-
-        else if(operation === "OR"){
-
-            value =
-                first | second;
-
-        }
-
-        else if(operation === "XOR"){
-
-            value =
-                first ^ second;
-
-        }
-
-        else if(operation === "NOT"){
-
-            value =
-                ~first;
-
-        }
-
-        else if(operation === "SHL"){
-
-            value =
-                first << second;
-
-        }
-
-        else if(operation === "SHR"){
-
-            value =
-                first >> second;
-
-        }
-
-
-        expression =
-            formatProgrammerNumber(
-                value
+        const input =
+            prompt(
+                "Masukkan angka kedua:"
             );
 
-        result = expression;
-
-        addHistory(
-            operation,
-            result
-        );
-
-        render();
-
-    }catch(error){
-
-        result = "ERROR";
-        render();
-
-    }
-}
+        if(input === null)
+            return;
 
 
-/* =====================================================
-   MEMORY
-===================================================== */
+        if(numberBase === "BIN")
+            second =
+                parseInt(input,2);
 
-function memoryFunction(action){
+        else if(numberBase === "HEX")
+            second =
+                parseInt(input,16);
 
-    const current =
-        Number(result);
+        else if(numberBase === "OCT")
+            second =
+                parseInt(input,8);
 
-    if(action === "MC"){
+        else
+            second =
+                parseInt(input,10);
 
-        memory = 0;
 
-    }
+        if(Number.isNaN(second)){
 
-    else if(action === "MR"){
+            alert(
+                "Angka tidak valid."
+            );
 
-        expression =
-            formatNumber(memory);
-
-        result =
-            expression;
+            return;
+        }
 
     }
 
-    else if(action === "M+"){
 
-        memory += current;
+    let value;
 
-    }
+    if(operation === "AND")
+        value = first & second;
 
-    else if(action === "M-"){
+    else if(operation === "OR")
+        value = first | second;
 
-        memory -= current;
+    else if(operation === "XOR")
+        value = first ^ second;
 
-    }
+    else if(operation === "NOT")
+        value = ~first;
 
-    else if(action === "MS"){
+    else if(operation === "SHL")
+        value = first << second;
 
-        memory = current;
+    else if(operation === "SHR")
+        value = first >> second;
 
-    }
+
+    expression =
+        formatProgrammerNumber(value);
+
+    result = expression;
+
+    addHistory(
+        operation,
+        result
+    );
 
     render();
 }
@@ -1597,9 +1326,8 @@ function addHistory(exp,res){
         result:res
     });
 
-    if(history.length > 50){
+    if(history.length > 50)
         history.pop();
-    }
 }
 
 
@@ -1607,18 +1335,18 @@ function renderHistory(){
 
     if(history.length === 0){
 
-        historyList.innerHTML = `
-            <div style="
-                text-align:center;
-                color:#697386;
-                padding:25px;
-            ">
-                Belum ada perhitungan.
-            </div>
-        `;
+        historyList.innerHTML =
+        `<div style="
+            text-align:center;
+            color:#697386;
+            padding:25px;
+        ">
+            Belum ada perhitungan.
+        </div>`;
 
         return;
     }
+
 
     historyList.innerHTML =
         history.map(item => `
@@ -1632,9 +1360,7 @@ function renderHistory(){
 }
 
 
-/* =====================================================
-   RENDER
-===================================================== */
+/* RENDER */
 
 function render(){
 
@@ -1651,141 +1377,103 @@ function render(){
 
 
 /* =====================================================
-   BUTTON HANDLER
+   BUTTON
 ===================================================== */
 
 document.addEventListener(
-    "click",
-    function(event){
+"click",
+function(event){
 
-        const button =
-            event.target.closest(
-                "button"
-            );
+    const button =
+        event.target.closest("button");
 
-        if(!button){
-            return;
-        }
+    if(!button) return;
 
 
-        /* ANGKA / OPERATOR */
+    if(
+        button.dataset.value !==
+        undefined
+    ){
 
-        if(
-            button.dataset.value !==
-            undefined
-        ){
+        expression +=
+            button.dataset.value;
 
-            expression +=
-                button.dataset.value;
-
-            render();
-
-        }
+        render();
+    }
 
 
-        /* CLEAR */
+    if(
+        button.dataset.action ===
+        "clear"
+    ){
 
-        if(
-            button.dataset.action ===
-            "clear"
-        ){
+        expression = "";
+        result = "0";
 
-            expression = "";
-            result = "0";
-
-            render();
-
-        }
+        render();
+    }
 
 
-        /* BACKSPACE */
+    if(
+        button.dataset.action ===
+        "backspace"
+    ){
 
-        if(
-            button.dataset.action ===
-            "backspace"
-        ){
+        expression =
+            expression.slice(0,-1);
 
-            expression =
-                expression.slice(
-                    0,
-                    -1
-                );
-
-            render();
-
-        }
+        render();
+    }
 
 
-        /* EQUALS */
+    if(
+        button.dataset.action ===
+        "equals"
+    ){
 
-        if(
-            button.dataset.action ===
-            "equals"
-        ){
-
-            calculate();
-
-        }
+        calculate();
+    }
 
 
-        /* SCIENTIFIC */
+    if(button.dataset.function){
 
-        if(
+        scientificFunction(
             button.dataset.function
-        ){
-
-            scientificFunction(
-                button.dataset.function
-            );
-
-        }
-
-
-        /* MEMORY */
-
-        if(
-            button.dataset.memory
-        ){
-
-            memoryFunction(
-                button.dataset.memory
-            );
-
-        }
-
-
-        /* BASE */
-
-        if(
-            button.dataset.base
-        ){
-
-            setBase(
-                button.dataset.base
-            );
-
-        }
-
-
-        /* BITWISE */
-
-        if(
-            button.dataset.bitwise
-        ){
-
-            bitwise(
-                button.dataset.bitwise
-            );
-
-        }
+        );
 
     }
-);
 
 
-/* =====================================================
-   DEG / RAD
-===================================================== */
+    if(button.dataset.memory){
+
+        memoryFunction(
+            button.dataset.memory
+        );
+
+    }
+
+
+    if(button.dataset.base){
+
+        setBase(
+            button.dataset.base
+        );
+
+    }
+
+
+    if(button.dataset.bitwise){
+
+        bitwise(
+            button.dataset.bitwise
+        );
+
+    }
+
+});
+
+
+/* DEG RAD */
 
 angleButton.onclick =
 function(){
@@ -1800,26 +1488,25 @@ function(){
 
     angleModeDisplay.textContent =
         angleMode;
-
 };
 
 
-/* =====================================================
-   CLEAR HISTORY
-===================================================== */
+/* CLEAR HISTORY */
 
 document
-    .getElementById(
-        "clearHistory"
-    )
-    .onclick =
-    function(){
+.getElementById("clear-history");
 
-        history = [];
 
-        render();
+document
+.getElementById("clearHistory")
+?.addEventListener(
+"click",
+function(){
 
-    };
+    history = [];
+    render();
+
+});
 
 
 /* =====================================================
@@ -1827,93 +1514,468 @@ document
 ===================================================== */
 
 document.addEventListener(
-    "keydown",
-    function(event){
+"keydown",
+function(event){
 
-        const key =
-            event.key;
+    const key = event.key;
 
 
-        if(/[0-9]/.test(key)){
+    if(/[0-9]/.test(key)){
 
-            expression += key;
-            render();
-
-        }
-
-        else if(key === "."){
-
-            expression += ".";
-            render();
-
-        }
-
-        else if(
-            key === "+" ||
-            key === "-"
-        ){
-
-            expression += key;
-            render();
-
-        }
-
-        else if(key === "*"){
-
-            expression += "×";
-            render();
-
-        }
-
-        else if(key === "/"){
-
-            expression += "÷";
-            render();
-
-        }
-
-        else if(key === "%"){
-
-            expression += "%";
-            render();
-
-        }
-
-        else if(key === "Enter"){
-
-            calculate();
-
-        }
-
-        else if(key === "Backspace"){
-
-            expression =
-                expression.slice(
-                    0,
-                    -1
-                );
-
-            render();
-
-        }
-
-        else if(key === "Escape"){
-
-            expression = "";
-            result = "0";
-
-            render();
-
-        }
+        expression += key;
+        render();
 
     }
-);
+
+    else if(key === "."){
+
+        expression += ".";
+        render();
+
+    }
+
+    else if(
+        key === "+" ||
+        key === "-"
+    ){
+
+        expression += key;
+        render();
+
+    }
+
+    else if(key === "*"){
+
+        expression += "×";
+        render();
+
+    }
+
+    else if(key === "/"){
+
+        expression += "÷";
+        render();
+
+    }
+
+    else if(key === "Enter"){
+
+        calculate();
+
+    }
+
+    else if(key === "Backspace"){
+
+        expression =
+            expression.slice(0,-1);
+
+        render();
+
+    }
+
+    else if(key === "Escape"){
+
+        expression = "";
+        result = "0";
+
+        render();
+
+    }
+
+});
 
 
 /* =====================================================
-   START
+   UNIT CONVERTER
 ===================================================== */
 
+const converterData = {
+
+    length:{
+        meter:1,
+        kilometer:1000,
+        centimeter:.01,
+        millimeter:.001,
+        mile:1609.344,
+        yard:.9144,
+        foot:.3048,
+        inch:.0254
+    },
+
+    weight:{
+        kilogram:1,
+        gram:.001,
+        milligram:.000001,
+        ton:1000,
+        pound:.45359237,
+        ounce:.0283495231
+    },
+
+    area:{
+        "m²":1,
+        "km²":1000000,
+        "cm²":.0001,
+        "mm²":.000001,
+        hectare:10000,
+        acre:4046.8564224
+    },
+
+    volume:{
+        liter:1,
+        milliliter:.001,
+        "m³":1000,
+        "cm³":.001,
+        gallon:3.785411784,
+        quart:.946352946,
+        pint:.473176473
+    },
+
+    time:{
+        second:1,
+        millisecond:.001,
+        minute:60,
+        hour:3600,
+        day:86400,
+        week:604800
+    },
+
+    speed:{
+        "m/s":1,
+        "km/h":.2777777778,
+        mph:.44704,
+        knot:.5144444444
+    },
+
+    data:{
+        bit:1,
+        byte:8,
+        KB:8192,
+        MB:8388608,
+        GB:8589934592,
+        TB:8796093022208
+    },
+
+    energy:{
+        joule:1,
+        kilojoule:1000,
+        calorie:4.184,
+        kilocalorie:4184,
+        "watt-hour":3600,
+        "kilowatt-hour":3600000
+    },
+
+    temperature:{
+        C:1,
+        F:1,
+        K:1
+    }
+
+};
+
+
+const unitNames = {
+
+    length:{
+        meter:"Meter",
+        kilometer:"Kilometer",
+        centimeter:"Centimeter",
+        millimeter:"Millimeter",
+        mile:"Mile",
+        yard:"Yard",
+        foot:"Foot",
+        inch:"Inch"
+    },
+
+    weight:{
+        kilogram:"Kilogram",
+        gram:"Gram",
+        milligram:"Miligram",
+        ton:"Ton",
+        pound:"Pound",
+        ounce:"Ounce"
+    },
+
+    temperature:{
+        C:"Celsius",
+        F:"Fahrenheit",
+        K:"Kelvin"
+    },
+
+    area:{
+        "m²":"Meter Persegi",
+        "km²":"Kilometer Persegi",
+        "cm²":"Centimeter Persegi",
+        "mm²":"Milimeter Persegi",
+        hectare:"Hektare",
+        acre:"Acre"
+    },
+
+    volume:{
+        liter:"Liter",
+        milliliter:"Mililiter",
+        "m³":"Meter Kubik",
+        "cm³":"Centimeter Kubik",
+        gallon:"Gallon",
+        quart:"Quart",
+        pint:"Pint"
+    },
+
+    time:{
+        second:"Detik",
+        millisecond:"Milidetik",
+        minute:"Menit",
+        hour:"Jam",
+        day:"Hari",
+        week:"Minggu"
+    },
+
+    speed:{
+        "m/s":"Meter/detik",
+        "km/h":"Kilometer/jam",
+        mph:"Mil/jam",
+        knot:"Knot"
+    },
+
+    data:{
+        bit:"Bit",
+        byte:"Byte",
+        KB:"Kilobyte",
+        MB:"Megabyte",
+        GB:"Gigabyte",
+        TB:"Terabyte"
+    },
+
+    energy:{
+        joule:"Joule",
+        kilojoule:"Kilojoule",
+        calorie:"Kalori",
+        kilocalorie:"Kilokalori",
+        "watt-hour":"Watt Hour",
+        "kilowatt-hour":"Kilowatt Hour"
+    }
+
+};
+
+
+const converterType =
+    document.getElementById(
+        "converterType"
+    );
+
+const convertInput =
+    document.getElementById(
+        "convertInput"
+    );
+
+const fromUnit =
+    document.getElementById(
+        "fromUnit"
+    );
+
+const toUnit =
+    document.getElementById(
+        "toUnit"
+    );
+
+const convertResult =
+    document.getElementById(
+        "convertResult"
+    );
+
+
+/* UPDATE UNITS */
+
+function updateConverterUnits(){
+
+    const type =
+        converterType.value;
+
+    fromUnit.innerHTML = "";
+    toUnit.innerHTML = "";
+
+
+    Object.keys(
+        unitNames[type]
+    ).forEach(unit => {
+
+        const a =
+            document.createElement(
+                "option"
+            );
+
+        a.value = unit;
+        a.textContent =
+            unitNames[type][unit];
+
+        fromUnit.appendChild(a);
+
+
+        const b =
+            document.createElement(
+                "option"
+            );
+
+        b.value = unit;
+        b.textContent =
+            unitNames[type][unit];
+
+        toUnit.appendChild(b);
+
+    });
+
+
+    if(
+        fromUnit.options.length > 1
+    ){
+
+        fromUnit.selectedIndex = 0;
+        toUnit.selectedIndex = 1;
+
+    }
+
+
+    convertUnits();
+}
+
+
+/* CONVERT */
+
+function convertUnits(){
+
+    const type =
+        converterType.value;
+
+    const value =
+        parseFloat(
+            convertInput.value
+        );
+
+
+    if(Number.isNaN(value)){
+
+        convertResult.textContent =
+            "Hasil: -";
+
+        return;
+    }
+
+
+    /* SUHU */
+
+    if(type === "temperature"){
+
+        let celsius;
+
+
+        if(fromUnit.value === "C")
+            celsius = value;
+
+        else if(fromUnit.value === "F")
+            celsius =
+                (value - 32) * 5 / 9;
+
+        else if(fromUnit.value === "K")
+            celsius =
+                value - 273.15;
+
+
+        let converted;
+
+
+        if(toUnit.value === "C")
+            converted = celsius;
+
+        else if(toUnit.value === "F")
+            converted =
+                celsius * 9 / 5 + 32;
+
+        else if(toUnit.value === "K")
+            converted =
+                celsius + 273.15;
+
+
+        convertResult.textContent =
+            "Hasil: " +
+            formatNumber(converted) +
+            " " +
+            toUnit.value;
+
+        return;
+    }
+
+
+    /* SATUAN LAIN */
+
+    const base =
+        value *
+        converterData[type][
+            fromUnit.value
+        ];
+
+
+    const converted =
+        base /
+        converterData[type][
+            toUnit.value
+        ];
+
+
+    convertResult.textContent =
+        "Hasil: " +
+        formatNumber(converted) +
+        " " +
+        toUnit.value;
+}
+
+
+/* EVENTS */
+
+converterType.addEventListener(
+    "change",
+    updateConverterUnits
+);
+
+convertInput.addEventListener(
+    "input",
+    convertUnits
+);
+
+fromUnit.addEventListener(
+    "change",
+    convertUnits
+);
+
+toUnit.addEventListener(
+    "change",
+    convertUnits
+);
+
+
+/* SWAP */
+
+document
+.getElementById("swapUnit")
+.addEventListener(
+"click",
+function(){
+
+    const temp =
+        fromUnit.value;
+
+    fromUnit.value =
+        toUnit.value;
+
+    toUnit.value =
+        temp;
+
+    convertUnits();
+
+});
+
+
+/* START */
+
+updateConverterUnits();
 updateBaseButtons();
 render();
 
