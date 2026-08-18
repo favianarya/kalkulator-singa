@@ -50,7 +50,6 @@ body{
     height:80px;
     object-fit:contain;
     border-radius:12px;
-    transition:.3s;
 }
 
 .logo-left img{
@@ -59,11 +58,6 @@ body{
 
 .logo-right img{
     filter:drop-shadow(0 0 12px #00bfff);
-}
-
-.logo-left img:hover,
-.logo-right img:hover{
-    transform:scale(1.08);
 }
 
 .brand{
@@ -117,7 +111,7 @@ body{
     box-shadow:0 20px 60px #000;
 }
 
-/* LEFT */
+/* HERO */
 .hero{
     padding:35px;
 }
@@ -164,6 +158,51 @@ body{
     color:#ffc400;
 }
 
+/* NAMA KELOMPOK */
+.group-box{
+    margin-top:25px;
+    border-top:1px solid #303d4c;
+    padding-top:18px;
+}
+
+.group-title{
+    margin-bottom:10px;
+    color:#ffc400;
+    font-size:13px;
+    font-weight:bold;
+    letter-spacing:2px;
+}
+
+.member{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:10px 12px;
+    margin-top:7px;
+    border:1px solid #293545;
+    border-radius:9px;
+    background:#ffffff05;
+    color:#c5cfdb;
+    font-size:13px;
+}
+
+.member span{
+    min-width:27px;
+    height:27px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:6px;
+    background:linear-gradient(
+        145deg,
+        #ffc400,
+        #ed5800
+    );
+    color:#080a0d;
+    font-size:11px;
+    font-weight:bold;
+}
+
 /* CALCULATOR */
 .calculator{
     padding:18px;
@@ -204,10 +243,9 @@ body{
     font-weight:bold;
     overflow:auto;
     white-space:nowrap;
-    text-shadow:0 0 15px #ffc40055;
 }
 
-/* GRID */
+/* BUTTON GRID */
 .button-grid{
     display:grid;
     gap:7px;
@@ -306,11 +344,6 @@ button:active{
     outline:none;
 }
 
-.converter select:focus,
-.converter input:focus{
-    border-color:#ffc400;
-}
-
 .convert-row{
     display:grid;
     grid-template-columns:1fr 50px 1fr;
@@ -376,7 +409,6 @@ button:active{
     color:#ff6565;
 }
 
-/* FOOTER */
 footer{
     padding:25px;
     text-align:center;
@@ -387,9 +419,11 @@ footer{
 
 /* MOBILE */
 @media(max-width:1000px){
+
     .container{
         grid-template-columns:1fr;
     }
+
 }
 
 @media(max-width:600px){
@@ -489,28 +523,66 @@ footer{
     <div class="features">
 
         <div class="feature">
-            🧮 <b>Scientific</b> — √, sin, cos, tan,
-            log, ln, factorial dan lainnya.
+            🧮 <b>Scientific</b> -
+            √, x², xʸ, 1/x, ±, sin, cos, tan,
+            asin, acos, atan, log, ln, eˣ,
+            10ˣ, π, e, φ, factorial, modulus,
+            random dan absolute.
         </div>
 
         <div class="feature">
-            💻 <b>Programmer</b> — BIN, DEC, HEX,
-            OCT dan operasi bitwise.
+            💻 <b>Programmer</b> -
+            Binary, Decimal, Hexadecimal,
+            Octal, AND, OR, XOR, NOT,
+            Shift Left dan Shift Right.
         </div>
 
         <div class="feature">
-            🔄 <b>Converter</b> — 9 kategori
-            satuan.
+            🔄 <b>Converter</b> -
+            Panjang, Berat, Suhu, Luas,
+            Volume, Waktu, Kecepatan,
+            Data Digital dan Energi.
         </div>
 
         <div class="feature">
-            💾 <b>Memory & History</b> —
-            simpan dan lihat perhitungan.
+            💾 <b>History</b> -
+            Menyimpan riwayat perhitungan.
         </div>
 
         <div class="feature">
-            📱 <b>Responsive</b> —
-            nyaman digunakan di HP dan PC.
+            📱 <b>Responsive</b> -
+            Bisa digunakan di HP dan PC.
+        </div>
+
+    </div>
+
+
+    <!-- NAMA KELOMPOK -->
+
+    <div class="group-box">
+
+        <div class="group-title">
+            👥 NAMA KELOMPOK
+        </div>
+
+        <div class="member">
+            <span>01</span>
+            Favian Arya Danasura
+        </div>
+
+        <div class="member">
+            <span>02</span>
+            Ilham Damar Jati
+        </div>
+
+        <div class="member">
+            <span>03</span>
+            Farhan Ade Setiawan
+        </div>
+
+        <div class="member">
+            <span>04</span>
+            Zudhan
         </div>
 
     </div>
@@ -523,8 +595,6 @@ footer{
 ===================================================== -->
 
 <section class="card calculator">
-
-    <!-- DISPLAY -->
 
     <div class="display">
 
@@ -678,7 +748,6 @@ footer{
 
         </select>
 
-
         <input
             type="number"
             id="convertInput"
@@ -686,19 +755,15 @@ footer{
             placeholder="Masukkan angka"
         >
 
-
         <div class="convert-row">
 
             <select id="fromUnit"></select>
 
-            <button id="swapUnit">
-                ⇄
-            </button>
+            <button id="swapUnit">⇄</button>
 
             <select id="toUnit"></select>
 
         </div>
-
 
         <div class="convert-result">
             <span id="convertResult">
@@ -725,45 +790,27 @@ footer{
             ⌫
         </button>
 
-        <button data-value="(">
-            (
-        </button>
-
-        <button class="operator" data-value=")">
-            )
-        </button>
-
+        <button data-value="(">(</button>
+        <button class="operator" data-value=")">)</button>
 
         <button data-value="7">7</button>
         <button data-value="8">8</button>
         <button data-value="9">9</button>
         <button class="operator" data-value="÷">÷</button>
 
-
         <button data-value="4">4</button>
         <button data-value="5">5</button>
         <button data-value="6">6</button>
         <button class="operator" data-value="×">×</button>
-
 
         <button data-value="1">1</button>
         <button data-value="2">2</button>
         <button data-value="3">3</button>
         <button class="operator" data-value="-">−</button>
 
-
-        <button class="zero" data-value="0">
-            0
-        </button>
-
-        <button data-value=".">
-            .
-        </button>
-
-        <button class="operator" data-value="+">
-            +
-        </button>
-
+        <button class="zero" data-value="0">0</button>
+        <button data-value=".">.</button>
+        <button class="operator" data-value="+">+</button>
 
         <button class="equals" data-action="equals">
             =
@@ -784,17 +831,10 @@ footer{
         🏁 RACE HISTORY
     </div>
 
-    <div
-        id="historyList"
-        class="history-list">
-    </div>
+    <div id="historyList" class="history-list"></div>
 
-    <button
-        id="clearHistory"
-        class="clear-history">
-
+    <button id="clearHistory" class="clear-history">
         🗑 HAPUS RIWAYAT
-
     </button>
 
 </aside>
@@ -803,18 +843,16 @@ footer{
 
 
 <footer>
-
     © 2026 SINGA BALAP
     <br>
     SMKN 1 SANDEN • RPL
-
 </footer>
 
 
 <script>
 
 /* =====================================================
-   CALCULATOR
+   BASIC CALCULATOR
 ===================================================== */
 
 let expression = "";
@@ -823,7 +861,6 @@ let memory = 0;
 let angleMode = "DEG";
 let numberBase = "DEC";
 let history = [];
-
 
 const expressionDisplay =
     document.getElementById("expression");
@@ -844,13 +881,10 @@ const baseDisplay =
     document.getElementById("baseDisplay");
 
 
-/* FORMAT NUMBER */
-
 function formatNumber(value){
 
-    if(!Number.isFinite(value)){
+    if(!Number.isFinite(value))
         return "ERROR";
-    }
 
     if(
         Math.abs(value) >= 1e12 ||
@@ -868,8 +902,6 @@ function formatNumber(value){
 }
 
 
-/* PREPARE */
-
 function prepareExpression(text){
 
     return text
@@ -881,31 +913,22 @@ function prepareExpression(text){
             "φ",
             "((1 + Math.sqrt(5))/2)"
         )
-        .replace(
-            /\be\b/g,
-            "Math.E"
-        )
-        .replace(
-            /\^/g,
-            "**"
-        );
+        .replace(/\be\b/g,"Math.E")
+        .replace(/\^/g,"**");
 }
 
 
-/* CALCULATE */
-
 function calculate(){
 
-    if(!expression) return;
+    if(!expression)
+        return;
 
     try{
 
-        const math =
-            prepareExpression(expression);
-
         const value =
             Function(
-                "return " + math
+                "return " +
+                prepareExpression(expression)
             )();
 
         result =
@@ -916,8 +939,7 @@ function calculate(){
             result
         );
 
-        expression =
-            result;
+        expression = result;
 
         render();
 
@@ -930,7 +952,9 @@ function calculate(){
 }
 
 
-/* SCIENTIFIC */
+/* =====================================================
+   SCIENTIFIC
+===================================================== */
 
 function scientificFunction(fn){
 
@@ -940,23 +964,18 @@ function scientificFunction(fn){
 
         if(expression){
 
-            number =
-                Number(
-                    Function(
-                        "return " +
-                        prepareExpression(
-                            expression
-                        )
-                    )()
-                );
+            number = Number(
+                Function(
+                    "return " +
+                    prepareExpression(expression)
+                )()
+            );
 
         }else{
 
-            number =
-                Number(result);
+            number = Number(result);
 
         }
-
 
         let value;
 
@@ -985,12 +1004,8 @@ function scientificFunction(fn){
 
             value =
                 angleMode === "DEG"
-                ?
-                Math.sin(
-                    number*Math.PI/180
-                )
-                :
-                Math.sin(number);
+                ? Math.sin(number*Math.PI/180)
+                : Math.sin(number);
 
         }
 
@@ -998,12 +1013,8 @@ function scientificFunction(fn){
 
             value =
                 angleMode === "DEG"
-                ?
-                Math.cos(
-                    number*Math.PI/180
-                )
-                :
-                Math.cos(number);
+                ? Math.cos(number*Math.PI/180)
+                : Math.cos(number);
 
         }
 
@@ -1011,12 +1022,8 @@ function scientificFunction(fn){
 
             value =
                 angleMode === "DEG"
-                ?
-                Math.tan(
-                    number*Math.PI/180
-                )
-                :
-                Math.tan(number);
+                ? Math.tan(number*Math.PI/180)
+                : Math.tan(number);
 
         }
 
@@ -1025,8 +1032,7 @@ function scientificFunction(fn){
             value = Math.asin(number);
 
             if(angleMode === "DEG")
-                value =
-                    value*180/Math.PI;
+                value = value*180/Math.PI;
 
         }
 
@@ -1035,8 +1041,7 @@ function scientificFunction(fn){
             value = Math.acos(number);
 
             if(angleMode === "DEG")
-                value =
-                    value*180/Math.PI;
+                value = value*180/Math.PI;
 
         }
 
@@ -1045,8 +1050,7 @@ function scientificFunction(fn){
             value = Math.atan(number);
 
             if(angleMode === "DEG")
-                value =
-                    value*180/Math.PI;
+                value = value*180/Math.PI;
 
         }
 
@@ -1099,8 +1103,7 @@ function scientificFunction(fn){
         result =
             formatNumber(value);
 
-        expression =
-            result;
+        expression = result;
 
         render();
 
@@ -1115,7 +1118,9 @@ function scientificFunction(fn){
 }
 
 
-/* MEMORY */
+/* =====================================================
+   MEMORY
+===================================================== */
 
 function memoryFunction(action){
 
@@ -1218,10 +1223,11 @@ function updateBaseButtons(){
             if(
                 button.dataset.base ===
                 numberBase
-            )
+            ){
                 button.classList.add(
                     "base-active"
                 );
+            }
 
         });
 
@@ -1230,11 +1236,9 @@ function updateBaseButtons(){
 }
 
 
-/* BITWISE */
-
 function bitwise(operation){
 
-    let first =
+    const first =
         getProgrammerNumber();
 
     let second = 0;
@@ -1243,38 +1247,28 @@ function bitwise(operation){
     if(operation !== "NOT"){
 
         const input =
-            prompt(
-                "Masukkan angka kedua:"
-            );
+            prompt("Masukkan angka kedua:");
 
         if(input === null)
             return;
 
-
         if(numberBase === "BIN")
-            second =
-                parseInt(input,2);
+            second = parseInt(input,2);
 
         else if(numberBase === "HEX")
-            second =
-                parseInt(input,16);
+            second = parseInt(input,16);
 
         else if(numberBase === "OCT")
-            second =
-                parseInt(input,8);
+            second = parseInt(input,8);
 
         else
-            second =
-                parseInt(input,10);
-
+            second = parseInt(input,10);
 
         if(Number.isNaN(second)){
 
-            alert(
-                "Angka tidak valid."
-            );
-
+            alert("Angka tidak valid.");
             return;
+
         }
 
     }
@@ -1335,14 +1329,15 @@ function renderHistory(){
 
     if(history.length === 0){
 
-        historyList.innerHTML =
-        `<div style="
-            text-align:center;
-            color:#697386;
-            padding:25px;
-        ">
-            Belum ada perhitungan.
-        </div>`;
+        historyList.innerHTML = `
+            <div style="
+                text-align:center;
+                color:#697386;
+                padding:25px;
+            ">
+                Belum ada perhitungan.
+            </div>
+        `;
 
         return;
     }
@@ -1359,8 +1354,6 @@ function renderHistory(){
         `).join("");
 }
 
-
-/* RENDER */
 
 function render(){
 
@@ -1381,99 +1374,101 @@ function render(){
 ===================================================== */
 
 document.addEventListener(
-"click",
-function(event){
+    "click",
+    function(event){
 
-    const button =
-        event.target.closest("button");
+        const button =
+            event.target.closest("button");
 
-    if(!button) return;
+        if(!button)
+            return;
 
 
-    if(
-        button.dataset.value !==
-        undefined
-    ){
+        if(
+            button.dataset.value !==
+            undefined
+        ){
 
-        expression +=
-            button.dataset.value;
+            expression +=
+                button.dataset.value;
 
-        render();
+            render();
+        }
+
+
+        if(
+            button.dataset.action ===
+            "clear"
+        ){
+
+            expression = "";
+            result = "0";
+
+            render();
+        }
+
+
+        if(
+            button.dataset.action ===
+            "backspace"
+        ){
+
+            expression =
+                expression.slice(0,-1);
+
+            render();
+        }
+
+
+        if(
+            button.dataset.action ===
+            "equals"
+        ){
+
+            calculate();
+        }
+
+
+        if(button.dataset.function){
+
+            scientificFunction(
+                button.dataset.function
+            );
+
+        }
+
+
+        if(button.dataset.memory){
+
+            memoryFunction(
+                button.dataset.memory
+            );
+
+        }
+
+
+        if(button.dataset.base){
+
+            setBase(
+                button.dataset.base
+            );
+
+        }
+
+
+        if(button.dataset.bitwise){
+
+            bitwise(
+                button.dataset.bitwise
+            );
+
+        }
+
     }
+);
 
 
-    if(
-        button.dataset.action ===
-        "clear"
-    ){
-
-        expression = "";
-        result = "0";
-
-        render();
-    }
-
-
-    if(
-        button.dataset.action ===
-        "backspace"
-    ){
-
-        expression =
-            expression.slice(0,-1);
-
-        render();
-    }
-
-
-    if(
-        button.dataset.action ===
-        "equals"
-    ){
-
-        calculate();
-    }
-
-
-    if(button.dataset.function){
-
-        scientificFunction(
-            button.dataset.function
-        );
-
-    }
-
-
-    if(button.dataset.memory){
-
-        memoryFunction(
-            button.dataset.memory
-        );
-
-    }
-
-
-    if(button.dataset.base){
-
-        setBase(
-            button.dataset.base
-        );
-
-    }
-
-
-    if(button.dataset.bitwise){
-
-        bitwise(
-            button.dataset.bitwise
-        );
-
-    }
-
-});
-
-
-/* DEG RAD */
+/* DEG / RAD */
 
 angleButton.onclick =
 function(){
@@ -1494,99 +1489,94 @@ function(){
 /* CLEAR HISTORY */
 
 document
-.getElementById("clear-history");
-
-
-document
 .getElementById("clearHistory")
-?.addEventListener(
-"click",
-function(){
+.addEventListener(
+    "click",
+    function(){
 
-    history = [];
-    render();
+        history = [];
+        render();
 
-});
+    }
+);
 
 
-/* =====================================================
-   KEYBOARD
-===================================================== */
+/* KEYBOARD */
 
 document.addEventListener(
-"keydown",
-function(event){
+    "keydown",
+    function(event){
 
-    const key = event.key;
+        const key = event.key;
 
+        if(/[0-9]/.test(key)){
 
-    if(/[0-9]/.test(key)){
+            expression += key;
+            render();
 
-        expression += key;
-        render();
+        }
+
+        else if(key === "."){
+
+            expression += ".";
+            render();
+
+        }
+
+        else if(
+            key === "+" ||
+            key === "-"
+        ){
+
+            expression += key;
+            render();
+
+        }
+
+        else if(key === "*"){
+
+            expression += "×";
+            render();
+
+        }
+
+        else if(key === "/"){
+
+            expression += "÷";
+            render();
+
+        }
+
+        else if(key === "Enter"){
+
+            calculate();
+
+        }
+
+        else if(key === "Backspace"){
+
+            expression =
+                expression.slice(0,-1);
+
+            render();
+
+        }
+
+        else if(key === "Escape"){
+
+            expression = "";
+            result = "0";
+
+            render();
+
+        }
 
     }
-
-    else if(key === "."){
-
-        expression += ".";
-        render();
-
-    }
-
-    else if(
-        key === "+" ||
-        key === "-"
-    ){
-
-        expression += key;
-        render();
-
-    }
-
-    else if(key === "*"){
-
-        expression += "×";
-        render();
-
-    }
-
-    else if(key === "/"){
-
-        expression += "÷";
-        render();
-
-    }
-
-    else if(key === "Enter"){
-
-        calculate();
-
-    }
-
-    else if(key === "Backspace"){
-
-        expression =
-            expression.slice(0,-1);
-
-        render();
-
-    }
-
-    else if(key === "Escape"){
-
-        expression = "";
-        result = "0";
-
-        render();
-
-    }
-
-});
+);
 
 
 /* =====================================================
-   UNIT CONVERTER
+   CONVERTER
 ===================================================== */
 
 const converterData = {
@@ -1679,7 +1669,7 @@ const unitNames = {
         meter:"Meter",
         kilometer:"Kilometer",
         centimeter:"Centimeter",
-        millimeter:"Millimeter",
+        millimeter:"Milimeter",
         mile:"Mile",
         yard:"Yard",
         foot:"Foot",
@@ -1783,8 +1773,6 @@ const convertResult =
     );
 
 
-/* UPDATE UNITS */
-
 function updateConverterUnits(){
 
     const type =
@@ -1798,28 +1786,32 @@ function updateConverterUnits(){
         unitNames[type]
     ).forEach(unit => {
 
-        const a =
+        const option1 =
             document.createElement(
                 "option"
             );
 
-        a.value = unit;
-        a.textContent =
+        option1.value = unit;
+        option1.textContent =
             unitNames[type][unit];
 
-        fromUnit.appendChild(a);
+        fromUnit.appendChild(
+            option1
+        );
 
 
-        const b =
+        const option2 =
             document.createElement(
                 "option"
             );
 
-        b.value = unit;
-        b.textContent =
+        option2.value = unit;
+        option2.textContent =
             unitNames[type][unit];
 
-        toUnit.appendChild(b);
+        toUnit.appendChild(
+            option2
+        );
 
     });
 
@@ -1837,8 +1829,6 @@ function updateConverterUnits(){
     convertUnits();
 }
 
-
-/* CONVERT */
 
 function convertUnits(){
 
@@ -1866,7 +1856,6 @@ function convertUnits(){
 
         let celsius;
 
-
         if(fromUnit.value === "C")
             celsius = value;
 
@@ -1880,7 +1869,6 @@ function convertUnits(){
 
 
         let converted;
-
 
         if(toUnit.value === "C")
             converted = celsius;
@@ -1904,8 +1892,6 @@ function convertUnits(){
     }
 
 
-    /* SATUAN LAIN */
-
     const base =
         value *
         converterData[type][
@@ -1928,7 +1914,7 @@ function convertUnits(){
 }
 
 
-/* EVENTS */
+/* CONVERTER EVENTS */
 
 converterType.addEventListener(
     "change",
@@ -1956,21 +1942,22 @@ toUnit.addEventListener(
 document
 .getElementById("swapUnit")
 .addEventListener(
-"click",
-function(){
+    "click",
+    function(){
 
-    const temp =
-        fromUnit.value;
+        const temp =
+            fromUnit.value;
 
-    fromUnit.value =
-        toUnit.value;
+        fromUnit.value =
+            toUnit.value;
 
-    toUnit.value =
-        temp;
+        toUnit.value =
+            temp;
 
-    convertUnits();
+        convertUnits();
 
-});
+    }
+);
 
 
 /* START */
