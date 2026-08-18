@@ -3,1109 +3,587 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Singa Balap - Scientific Calculator</title>
+<title>Singa Balap Scientific Calculator</title>
 
 <style>
-
-/* =====================================================
-   RESET
-===================================================== */
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
 
-html {
-    scroll-behavior: smooth;
+html{
+    scroll-behavior:smooth;
 }
 
-body {
-    min-height: 100vh;
-
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
-
-    color: white;
-
+body{
+    min-height:100vh;
+    font-family:Arial,Helvetica,sans-serif;
+    color:white;
     background:
-        radial-gradient(
-            circle at 15% 20%,
-            #432100 0%,
-            transparent 30%
-        ),
-        radial-gradient(
-            circle at 85% 80%,
-            #00304a 0%,
-            transparent 35%
-        ),
-        linear-gradient(
-            135deg,
-            #030509,
-            #090d14 50%,
-            #020406
-        );
-
-    overflow-x: hidden;
+        radial-gradient(circle at 15% 20%,#432100 0%,transparent 30%),
+        radial-gradient(circle at 85% 80%,#00304a 0%,transparent 35%),
+        linear-gradient(135deg,#030509,#090d14 50%,#020406);
+    overflow-x:hidden;
 }
 
+/* HEADER */
+.header{
+    width:100%;
+    display:grid;
+    grid-template-columns:1fr auto 1fr;
+    align-items:center;
+    gap:20px;
+    padding:15px 35px;
+    background:linear-gradient(
+        180deg,
+        rgba(8,12,18,.98),
+        rgba(8,12,18,.80)
+    );
+    border-bottom:1px solid #303b4a;
+    box-shadow:0 10px 40px rgba(0,0,0,.7);
 
-/* =====================================================
-   HEADER
-   LOGO AKAN IKUT BERGERAK SAAT SCROLL
-===================================================== */
-
-.header {
-
-    width: 100%;
-
-    display: grid;
-
-    grid-template-columns:
-        1fr
-        auto
-        1fr;
-
-    align-items: center;
-
-    gap: 20px;
-
-    padding: 15px 35px;
-
-    background:
-        linear-gradient(
-            180deg,
-            rgba(8, 12, 18, .98),
-            rgba(8, 12, 18, .80)
-        );
-
-    border-bottom:
-        1px solid #303b4a;
-
-    box-shadow:
-        0 10px 40px rgba(0,0,0,.7);
-
-    /*
-       PENTING:
-       Bukan sticky.
-       Jadi logo akan ikut bergerak ketika halaman di-scroll.
-    */
-
-    position: relative;
-
-    z-index: 100;
+    /* LOGO IKUT SCROLL */
+    position:relative;
+    z-index:100;
 }
 
-
-/* =====================================================
-   LOGO KIRI
-===================================================== */
-
-.logo-left {
-
-    display: flex;
-
-    justify-content:
-        flex-start;
-
-    align-items: center;
+/* LOGO KIRI */
+.logo-left{
+    display:flex;
+    justify-content:flex-start;
+    align-items:center;
 }
 
-.logo-left img {
-
-    width: 85px;
-
-    height: 85px;
-
-    object-fit: contain;
-
-    border-radius: 14px;
-
-    filter:
-        drop-shadow(
-            0 0 10px
-            rgba(255,190,0,.45)
-        );
-
-    transition: .3s;
+.logo-left img{
+    width:85px;
+    height:85px;
+    object-fit:contain;
+    border-radius:14px;
+    filter:drop-shadow(0 0 10px rgba(255,190,0,.45));
+    transition:.3s;
 }
 
-.logo-left img:hover {
-
-    transform:
-        scale(1.08);
-
-    filter:
-        drop-shadow(
-            0 0 25px
-            rgba(255,190,0,.9)
-        );
+.logo-left img:hover{
+    transform:scale(1.08);
 }
 
-
-/* =====================================================
-   BRAND SINGA BALAP
-===================================================== */
-
-.brand {
-
-    text-align: center;
-
-    display: flex;
-
-    flex-direction: column;
-
-    align-items: center;
+/* BRAND */
+.brand{
+    text-align:center;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
 }
 
-.lion {
-
-    width: 72px;
-
-    height: 72px;
-
-    border-radius: 50%;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    font-size: 42px;
-
-    background:
-        radial-gradient(
-            circle,
-            #ffc400,
-            #ff5a00 55%,
-            #260900
-        );
-
-    border:
-        3px solid #ffc400;
-
+.lion{
+    width:72px;
+    height:72px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:42px;
+    background:radial-gradient(
+        circle,
+        #ffc400,
+        #ff5a00 55%,
+        #260900
+    );
+    border:3px solid #ffc400;
     box-shadow:
         0 0 15px #ff7300,
-        0 0 40px
-        rgba(255,120,0,.4);
-
-    animation:
-        glow 2s infinite;
+        0 0 40px rgba(255,120,0,.4);
+    animation:glow 2s infinite;
 }
 
-.brand h1 {
-
-    margin-top: 6px;
-
-    font-size:
-        clamp(
-            22px,
-            4vw,
-            36px
-        );
-
-    color: #ffc400;
-
-    font-style: italic;
-
-    letter-spacing: 3px;
-
-    text-shadow:
-        0 0 18px
-        rgba(255,170,0,.5);
+.brand h1{
+    margin-top:6px;
+    font-size:clamp(22px,4vw,36px);
+    color:#ffc400;
+    font-style:italic;
+    letter-spacing:3px;
+    text-shadow:0 0 18px rgba(255,170,0,.5);
 }
 
-.brand span {
-
-    margin-top: 3px;
-
-    font-size: 9px;
-
-    letter-spacing: 4px;
-
-    color: #aeb9c8;
+.brand span{
+    margin-top:3px;
+    font-size:9px;
+    letter-spacing:4px;
+    color:#aeb9c8;
 }
 
-
-/* =====================================================
-   LOGO KANAN
-===================================================== */
-
-.logo-right {
-
-    display: flex;
-
-    justify-content:
-        flex-end;
-
-    align-items: center;
+/* LOGO KANAN */
+.logo-right{
+    display:flex;
+    justify-content:flex-end;
+    align-items:center;
 }
 
-.logo-right img {
-
-    width: 85px;
-
-    height: 85px;
-
-    object-fit: contain;
-
-    border-radius: 14px;
-
-    filter:
-        drop-shadow(
-            0 0 12px
-            rgba(0,170,255,.45)
-        );
-
-    transition: .3s;
+.logo-right img{
+    width:85px;
+    height:85px;
+    object-fit:contain;
+    border-radius:14px;
+    filter:drop-shadow(0 0 12px rgba(0,170,255,.45));
+    transition:.3s;
 }
 
-.logo-right img:hover {
-
-    transform:
-        scale(1.08);
-
-    filter:
-        drop-shadow(
-            0 0 25px
-            rgba(0,170,255,.9)
-        );
+.logo-right img:hover{
+    transform:scale(1.08);
 }
 
-
-/* =====================================================
-   STATUS
-===================================================== */
-
-.status {
-
-    position: absolute;
-
-    right: 35px;
-
-    bottom: 4px;
-
-    font-size: 8px;
-
-    color: #6f7c8e;
-
-    letter-spacing: 1px;
+.status{
+    position:absolute;
+    right:35px;
+    bottom:4px;
+    font-size:8px;
+    color:#6f7c8e;
+    letter-spacing:1px;
 }
 
-.status-dot {
-
-    display: inline-block;
-
-    width: 7px;
-
-    height: 7px;
-
-    border-radius: 50%;
-
-    background: #20ff75;
-
-    box-shadow:
-        0 0 10px #20ff75;
-
-    margin-right: 5px;
+.status-dot{
+    display:inline-block;
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:#20ff75;
+    box-shadow:0 0 10px #20ff75;
+    margin-right:5px;
 }
 
-
-/* =====================================================
-   MAIN
-===================================================== */
-
-.container {
-
-    width:
-        min(
-            1450px,
-            94%
-        );
-
-    margin:
-        30px auto;
-
-    display: grid;
-
+/* MAIN */
+.container{
+    width:min(1450px,94%);
+    margin:30px auto;
+    display:grid;
     grid-template-columns:
-        minmax(250px, 1fr)
-        minmax(350px, 520px)
-        minmax(250px, 1fr);
-
-    gap: 20px;
+        minmax(250px,1fr)
+        minmax(350px,520px)
+        minmax(250px,1fr);
+    gap:20px;
 }
 
-
-/* =====================================================
-   CARD
-===================================================== */
-
-.card {
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(18,24,34,.95),
-            rgba(6,10,15,.95)
-        );
-
-    border:
-        1px solid #303b4b;
-
-    border-radius: 20px;
-
-    box-shadow:
-        0 20px 60px
-        rgba(0,0,0,.7);
-
-    overflow: hidden;
+/* CARD */
+.card{
+    background:linear-gradient(
+        145deg,
+        rgba(18,24,34,.95),
+        rgba(6,10,15,.95)
+    );
+    border:1px solid #303b4b;
+    border-radius:20px;
+    box-shadow:0 20px 60px rgba(0,0,0,.7);
+    overflow:hidden;
 }
 
-
-/* =====================================================
-   HERO
-===================================================== */
-
-.hero {
-
-    min-height: 700px;
-
-    padding: 35px;
-
-    position: relative;
+/* HERO */
+.hero{
+    min-height:700px;
+    padding:35px;
+    position:relative;
 }
 
-.hero::before {
-
-    content: "";
-
-    position: absolute;
-
-    width: 250px;
-
-    height: 250px;
-
-    border-radius: 50%;
-
-    background: #ff6800;
-
-    filter: blur(120px);
-
-    opacity: .12;
-
-    right: -100px;
-
-    bottom: -80px;
+.eyebrow{
+    color:#ffc400;
+    font-size:12px;
+    font-weight:bold;
+    letter-spacing:3px;
 }
 
-.eyebrow {
-
-    color: #ffc400;
-
-    font-size: 12px;
-
-    font-weight: bold;
-
-    letter-spacing: 3px;
+.hero h2{
+    margin-top:20px;
+    font-size:clamp(30px,4vw,50px);
+    line-height:1;
 }
 
-.hero h2 {
-
-    margin-top: 20px;
-
-    font-size:
-        clamp(
-            30px,
-            4vw,
-            50px
-        );
-
-    line-height: 1;
+.hero h2 strong{
+    color:#ff6500;
+    text-shadow:0 0 20px rgba(255,90,0,.5);
 }
 
-.hero h2 strong {
-
-    color: #ff6500;
-
-    text-shadow:
-        0 0 20px
-        rgba(255,90,0,.5);
+.hero p{
+    margin-top:20px;
+    line-height:1.7;
+    color:#aeb8c7;
 }
 
-.hero p {
-
-    margin-top: 20px;
-
-    line-height: 1.7;
-
-    color: #aeb8c7;
+.features{
+    margin-top:35px;
+    display:grid;
+    gap:12px;
 }
 
-.features {
-
-    margin-top: 35px;
-
-    display: grid;
-
-    gap: 12px;
+.feature{
+    padding:13px;
+    border:1px solid #263140;
+    border-radius:12px;
+    background:rgba(255,255,255,.025);
+    color:#c7d0dc;
+    font-size:13px;
 }
 
-.feature {
-
-    padding: 13px;
-
-    border:
-        1px solid #263140;
-
-    border-radius: 12px;
-
-    background:
-        rgba(255,255,255,.025);
-
-    color: #c7d0dc;
-
-    font-size: 13px;
+.feature b{
+    color:#ffc400;
 }
 
-.feature b {
-
-    color: #ffc400;
+/* CALCULATOR */
+.calculator{
+    padding:18px;
 }
 
-
-/* =====================================================
-   CALCULATOR
-===================================================== */
-
-.calculator {
-
-    padding: 18px;
+/* DISPLAY */
+.display{
+    min-height:140px;
+    padding:15px;
+    border-radius:15px;
+    border:1px solid #405064;
+    background:linear-gradient(145deg,#07121d,#0b1723);
+    box-shadow:inset 0 0 30px rgba(0,160,255,.08);
 }
 
-
-/* =====================================================
-   DISPLAY
-===================================================== */
-
-.display {
-
-    min-height: 140px;
-
-    padding: 15px;
-
-    border-radius: 15px;
-
-    border:
-        1px solid #405064;
-
-    background:
-        linear-gradient(
-            145deg,
-            #07121d,
-            #0b1723
-        );
-
-    box-shadow:
-        inset 0 0 30px
-        rgba(0,160,255,.08);
+.display-top{
+    display:flex;
+    justify-content:space-between;
+    color:#13bfff;
+    font-size:10px;
+    letter-spacing:2px;
 }
 
-.display-top {
-
-    display: flex;
-
-    justify-content:
-        space-between;
-
-    color: #13bfff;
-
-    font-size: 10px;
-
-    letter-spacing: 2px;
+.expression{
+    height:34px;
+    margin-top:10px;
+    color:#8491a2;
+    text-align:right;
+    font-size:16px;
+    overflow-x:auto;
+    white-space:nowrap;
 }
 
-.expression {
-
-    height: 34px;
-
-    margin-top: 10px;
-
-    color: #8491a2;
-
-    text-align: right;
-
-    font-size: 16px;
-
-    overflow-x: auto;
-
-    white-space: nowrap;
+/* ANGKA DIPERKECIL */
+.result{
+    color:#ffc400;
+    text-align:right;
+    font-size:clamp(24px,4vw,42px);
+    font-weight:900;
+    min-height:48px;
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+    overflow-x:auto;
+    white-space:nowrap;
+    text-shadow:0 0 18px rgba(255,190,0,.4);
 }
 
-
-/*
-=======================================================
-HASIL ANGKA DIPERKECIL
-=======================================================
-*/
-
-.result {
-
-    color: #ffc400;
-
-    text-align: right;
-
-    font-size:
-        clamp(
-            24px,
-            4vw,
-            42px
-        );
-
-    font-weight: 900;
-
-    min-height: 48px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: flex-end;
-
-    overflow-x: auto;
-
-    white-space: nowrap;
-
-    text-shadow:
-        0 0 18px
-        rgba(255,190,0,.4);
+/* GRID */
+.button-grid{
+    display:grid;
+    gap:7px;
+    margin-top:9px;
 }
 
-
-/* =====================================================
-   BUTTON GRID
-===================================================== */
-
-.button-grid {
-
-    display: grid;
-
-    gap: 7px;
-
-    margin-top: 9px;
+.memory{
+    grid-template-columns:repeat(6,1fr);
 }
 
-.memory {
-
-    grid-template-columns:
-        repeat(6,1fr);
+.scientific{
+    grid-template-columns:repeat(5,1fr);
 }
 
-.scientific {
-
-    grid-template-columns:
-        repeat(5,1fr);
+.programmer{
+    grid-template-columns:repeat(5,1fr);
 }
 
-.keypad {
-
-    grid-template-columns:
-        repeat(4,1fr);
+.keypad{
+    grid-template-columns:repeat(4,1fr);
 }
 
-
-/* =====================================================
-   BUTTON
-===================================================== */
-
-button {
-
-    min-height: 48px;
-
-    border-radius: 10px;
-
-    border:
-        1px solid #303d4d;
-
-    background:
-        linear-gradient(
-            145deg,
-            #18222f,
-            #0c131c
-        );
-
-    color: #eaf0f7;
-
-    font-weight: 800;
-
-    cursor: pointer;
-
-    transition: .15s;
+/* BUTTON */
+button{
+    min-height:48px;
+    border-radius:10px;
+    border:1px solid #303d4d;
+    background:linear-gradient(
+        145deg,
+        #18222f,
+        #0c131c
+    );
+    color:#eaf0f7;
+    font-weight:800;
+    cursor:pointer;
+    transition:.15s;
 }
 
-button:hover {
-
-    transform:
-        translateY(-2px);
-
-    border-color:
-        #7b8da5;
-
-    box-shadow:
-        0 7px 18px
-        rgba(0,0,0,.6);
+button:hover{
+    transform:translateY(-2px);
+    border-color:#7b8da5;
+    box-shadow:0 7px 18px rgba(0,0,0,.6);
 }
 
-button:active {
-
-    transform:
-        scale(.94);
+button:active{
+    transform:scale(.94);
 }
 
-.operator {
-
-    color: #ffc400;
-
-    border-color:
-        #6c5618;
+.operator{
+    color:#ffc400;
+    border-color:#6c5618;
 }
 
-.danger {
-
-    color: #ff5d5d;
-
-    border-color:
-        #702626;
+.danger{
+    color:#ff5d5d;
+    border-color:#702626;
 }
 
-.equals {
-
-    background:
-        linear-gradient(
-            145deg,
-            #ffc400,
-            #e84b00
-        );
-
-    color: #090b0e;
-
-    border-color:
-        #ffc400;
-
-    font-size: 23px;
-
-    box-shadow:
-        0 0 20px
-        rgba(255,120,0,.35);
+.equals{
+    background:linear-gradient(145deg,#ffc400,#e84b00);
+    color:#090b0e;
+    border-color:#ffc400;
+    font-size:23px;
+    box-shadow:0 0 20px rgba(255,120,0,.35);
 }
 
-.zero {
-
-    grid-column:
-        span 2;
+.zero{
+    grid-column:span 2;
 }
 
-
-/* =====================================================
-   HISTORY
-===================================================== */
-
-.history {
-
-    padding: 18px;
-
-    min-height: 500px;
+.base-active{
+    background:linear-gradient(145deg,#ffc400,#e84b00);
+    color:#050505;
 }
 
-.history-title {
-
-    color: #ffc400;
-
-    font-weight: 900;
-
-    padding-bottom: 13px;
-
-    border-bottom:
-        1px solid #303846;
+/* PROGRAMMER TITLE */
+.section-title{
+    margin-top:14px;
+    padding:8px 4px;
+    color:#ffc400;
+    font-size:11px;
+    font-weight:bold;
+    letter-spacing:2px;
 }
 
-.history-list {
-
-    margin-top: 10px;
-
-    max-height: 590px;
-
-    overflow-y: auto;
+/* HISTORY */
+.history{
+    padding:18px;
+    min-height:500px;
 }
 
-.history-item {
-
-    margin-bottom: 8px;
-
-    padding: 12px;
-
-    border-radius: 10px;
-
-    border:
-        1px solid #293444;
-
-    background: #0c121b;
-
-    font-size: 13px;
-
-    color: #b8c2d0;
+.history-title{
+    color:#ffc400;
+    font-weight:900;
+    padding-bottom:13px;
+    border-bottom:1px solid #303846;
 }
 
-.history-item strong {
-
-    color: #ffc400;
-
-    display: block;
-
-    margin-top: 5px;
+.history-list{
+    margin-top:10px;
+    max-height:590px;
+    overflow-y:auto;
 }
 
-.clear-history {
-
-    width: 100%;
-
-    margin-top: 10px;
-
-    color: #ff6565;
+.history-item{
+    margin-bottom:8px;
+    padding:12px;
+    border-radius:10px;
+    border:1px solid #293444;
+    background:#0c121b;
+    font-size:13px;
+    color:#b8c2d0;
 }
 
-
-/* =====================================================
-   FOOTER
-===================================================== */
-
-footer {
-
-    text-align: center;
-
-    padding: 25px;
-
-    color: #697386;
-
-    font-size: 10px;
-
-    letter-spacing: 1px;
+.history-item strong{
+    color:#ffc400;
+    display:block;
+    margin-top:5px;
 }
 
+.clear-history{
+    width:100%;
+    margin-top:10px;
+    color:#ff6565;
+}
 
-/* =====================================================
-   ANIMATION
-===================================================== */
+/* FOOTER */
+footer{
+    text-align:center;
+    padding:25px;
+    color:#697386;
+    font-size:10px;
+    letter-spacing:1px;
+}
 
-@keyframes glow {
-
-    0%, 100% {
-
+/* ANIMATION */
+@keyframes glow{
+    0%,100%{
         box-shadow:
             0 0 15px #ff7300,
-            0 0 30px
-            rgba(255,100,0,.2);
-
+            0 0 30px rgba(255,100,0,.2);
     }
 
-    50% {
-
+    50%{
         box-shadow:
             0 0 30px #ffc400,
-            0 0 60px
-            rgba(255,130,0,.35);
-
+            0 0 60px rgba(255,130,0,.35);
     }
 }
 
+/* RESPONSIVE */
+@media(max-width:1000px){
 
-/* =====================================================
-   RESPONSIVE
-===================================================== */
-
-@media(max-width:1000px) {
-
-    .container {
-
-        grid-template-columns: 1fr;
-
+    .container{
+        grid-template-columns:1fr;
     }
 
-    .hero {
-
-        min-height: 300px;
-
+    .hero{
+        min-height:300px;
     }
 }
 
+@media(max-width:600px){
 
-@media(max-width:600px) {
-
-    .header {
-
-        grid-template-columns:
-            65px
-            1fr
-            65px;
-
-        padding: 10px;
-
+    .header{
+        grid-template-columns:65px 1fr 65px;
+        padding:10px;
     }
 
     .logo-left img,
-    .logo-right img {
-
-        width: 55px;
-
-        height: 55px;
-
+    .logo-right img{
+        width:55px;
+        height:55px;
     }
 
-    .lion {
-
-        width: 55px;
-
-        height: 55px;
-
-        font-size: 30px;
-
+    .lion{
+        width:55px;
+        height:55px;
+        font-size:30px;
     }
 
-    .brand h1 {
-
-        font-size: 18px;
-
-        letter-spacing: 1px;
-
+    .brand h1{
+        font-size:18px;
+        letter-spacing:1px;
     }
 
-    .brand span {
-
-        font-size: 7px;
-
-        letter-spacing: 2px;
-
+    .brand span{
+        font-size:7px;
+        letter-spacing:2px;
     }
 
-    .status {
-
-        display: none;
-
+    .status{
+        display:none;
     }
 
-    button {
-
-        min-height: 44px;
-
-        font-size: 12px;
-
+    button{
+        min-height:44px;
+        font-size:11px;
     }
 
-    .scientific {
-
-        grid-template-columns:
-            repeat(4,1fr);
-
+    .scientific{
+        grid-template-columns:repeat(4,1fr);
     }
 
+    .programmer{
+        grid-template-columns:repeat(2,1fr);
+    }
 }
 
-
-/* =====================================================
-   SCROLLBAR
-===================================================== */
-
-::-webkit-scrollbar {
-
-    width: 7px;
-
-    height: 7px;
+/* SCROLLBAR */
+::-webkit-scrollbar{
+    width:7px;
+    height:7px;
 }
 
-::-webkit-scrollbar-track {
-
-    background: #080c12;
+::-webkit-scrollbar-track{
+    background:#080c12;
 }
 
-::-webkit-scrollbar-thumb {
-
-    background:
-        linear-gradient(
-            #ffb000,
-            #ff4d00
-        );
-
-    border-radius: 10px;
+::-webkit-scrollbar-thumb{
+    background:linear-gradient(#ffb000,#ff4d00);
+    border-radius:10px;
 }
-
 </style>
 </head>
 
-
 <body>
 
-
-<!-- =====================================================
-     HEADER
-===================================================== -->
-
+<!-- HEADER -->
 <header class="header">
 
-
-    <!-- LOGO KIRI -->
-
     <div class="logo-left">
-
-        <img
-            src="logo-smkn.jpg"
-            alt="Logo SMKN 1 Sanden">
-
+        <img src="logo-smkn.jpg" alt="Logo SMKN 1 Sanden">
     </div>
-
-
-    <!-- BRAND -->
 
     <div class="brand">
+        <div class="lion">🦁</div>
 
-        <div class="lion">
-            🦁
-        </div>
-
-        <h1>
-            SINGA BALAP
-        </h1>
+        <h1>SINGA BALAP</h1>
 
         <span>
-            SCIENTIFIC RACING CALCULATOR
+            SCIENTIFIC • PROGRAMMER CALCULATOR
         </span>
-
     </div>
-
-
-    <!-- LOGO KANAN -->
 
     <div class="logo-right">
-
-        <img
-            src="logo-rpl.jpg"
-            alt="Logo RPL">
-
+        <img src="logo-rpl.jpg" alt="Logo RPL">
     </div>
 
-
     <div class="status">
-
         <span class="status-dot"></span>
-
         SYSTEM ONLINE
-
     </div>
 
 </header>
 
 
-
-<!-- =====================================================
-     MAIN
-===================================================== -->
-
+<!-- MAIN -->
 <main class="container">
 
-
-    <!-- =================================================
-         HERO KIRI
-    ================================================== -->
-
+    <!-- HERO -->
     <section class="card hero">
 
         <div class="eyebrow">
-
             SPEED • POWER • PRECISION
-
         </div>
 
-
         <h2>
-
             HITUNG
-
             <br>
-
-            <strong>
-                SECEPAT SINGA.
-            </strong>
-
+            <strong>SECEPAT SINGA.</strong>
         </h2>
 
-
         <p>
-
-            Scientific Calculator futuristik
-            bertema Singa Balap dengan fungsi
-            matematika lengkap.
-
+            Kalkulator futuristik bertema Singa Balap
+            dengan fungsi Basic, Scientific, dan Programmer.
         </p>
-
 
         <div class="features">
 
             <div class="feature">
-
-                🧮
-                <b>Scientific</b>
-
-                -
-                Fungsi matematika lengkap
-
+                🧮 <b>Scientific</b>
+                — Fungsi matematika lengkap
             </div>
 
-
             <div class="feature">
-
-                ⚡
-                <b>Fast</b>
-
-                -
-                Perhitungan cepat
-
+                💻 <b>Programmer</b>
+                — BIN, DEC, HEX, OCT
             </div>
 
-
             <div class="feature">
-
-                🏁
-                <b>Racing UI</b>
-
-                -
-                Tema Singa Balap
-
+                ⚡ <b>Bitwise</b>
+                — AND, OR, XOR, NOT
             </div>
 
-
             <div class="feature">
-
-                📱
-                <b>Responsive</b>
-
-                -
-                HP dan PC
-
+                🏁 <b>Racing UI</b>
+                — Tema Singa Balap
             </div>
 
+            <div class="feature">
+                📱 <b>Responsive</b>
+                — HP, Tablet, PC
+            </div>
 
             <div class="feature">
-
-                💾
-                <b>History</b>
-
-                -
-                Riwayat perhitungan
-
+                💾 <b>History</b>
+                — Riwayat perhitungan
             </div>
 
         </div>
@@ -1113,16 +591,10 @@ footer {
     </section>
 
 
-
-    <!-- =================================================
-         CALCULATOR
-    ================================================== -->
-
+    <!-- CALCULATOR -->
     <section class="card calculator">
 
-
         <!-- DISPLAY -->
-
         <div class="display">
 
             <div class="display-top">
@@ -1131,59 +603,31 @@ footer {
                     DEG
                 </span>
 
-                <span>
-                    SINGA ENGINE
+                <span id="baseDisplay">
+                    DEC
                 </span>
 
             </div>
 
-
-            <div
-                id="expression"
-                class="expression">
-
+            <div id="expression" class="expression">
                 0
-
             </div>
 
-
-            <div
-                id="result"
-                class="result">
-
+            <div id="result" class="result">
                 0
-
             </div>
 
         </div>
 
 
-
-        <!-- =================================================
-             MEMORY
-        ================================================== -->
-
+        <!-- MEMORY -->
         <div class="button-grid memory">
 
-            <button data-memory="MC">
-                MC
-            </button>
-
-            <button data-memory="MR">
-                MR
-            </button>
-
-            <button data-memory="M+">
-                M+
-            </button>
-
-            <button data-memory="M-">
-                M-
-            </button>
-
-            <button data-memory="MS">
-                MS
-            </button>
+            <button data-memory="MC">MC</button>
+            <button data-memory="MR">MR</button>
+            <button data-memory="M+">M+</button>
+            <button data-memory="M-">M-</button>
+            <button data-memory="MS">MS</button>
 
             <button id="angleButton">
                 DEG
@@ -1192,218 +636,168 @@ footer {
         </div>
 
 
-
-        <!-- =================================================
-             SCIENTIFIC
-        ================================================== -->
+        <!-- SCIENTIFIC -->
+        <div class="section-title">
+            SCIENTIFIC MODE
+        </div>
 
         <div class="button-grid scientific">
 
+            <button data-function="sqrt">√</button>
+            <button data-function="square">x²</button>
+            <button data-function="power">xʸ</button>
+            <button data-function="reciprocal">1/x</button>
+            <button data-function="sign">±</button>
 
-            <button data-function="sqrt">
-                √
+            <button data-function="sin">sin</button>
+            <button data-function="cos">cos</button>
+            <button data-function="tan">tan</button>
+            <button data-function="asin">asin</button>
+            <button data-function="acos">acos</button>
+
+            <button data-function="atan">atan</button>
+            <button data-function="log">log</button>
+            <button data-function="ln">ln</button>
+            <button data-function="exp">eˣ</button>
+            <button data-function="tenpower">10ˣ</button>
+
+            <button data-value="π">π</button>
+            <button data-value="e">e</button>
+            <button data-value="φ">φ</button>
+            <button data-function="factorial">n!</button>
+            <button data-function="modulus">mod</button>
+
+            <button data-function="random">RND</button>
+            <button data-function="absolute">|x|</button>
+
+        </div>
+
+
+        <!-- PROGRAMMER -->
+        <div class="section-title">
+            PROGRAMMER MODE
+        </div>
+
+        <div class="button-grid programmer">
+
+            <button
+                class="base-button"
+                data-base="BIN">
+                BIN
             </button>
 
-            <button data-function="square">
-                x²
+            <button
+                class="base-button"
+                data-base="DEC">
+                DEC
             </button>
 
-            <button data-function="power">
-                xʸ
+            <button
+                class="base-button"
+                data-base="HEX">
+                HEX
             </button>
 
-            <button data-function="reciprocal">
-                1/x
+            <button
+                class="base-button"
+                data-base="OCT">
+                OCT
             </button>
 
-            <button data-function="sign">
-                ±
+            <button data-bitwise="AND">
+                AND
             </button>
 
-
-            <button data-function="sin">
-                sin
+            <button data-bitwise="OR">
+                OR
             </button>
 
-            <button data-function="cos">
-                cos
+            <button data-bitwise="XOR">
+                XOR
             </button>
 
-            <button data-function="tan">
-                tan
+            <button data-bitwise="NOT">
+                NOT
             </button>
 
-            <button data-function="asin">
-                asin
+            <button data-bitwise="SHL">
+                Shift Left
             </button>
 
-            <button data-function="acos">
-                acos
-            </button>
-
-
-            <button data-function="atan">
-                atan
-            </button>
-
-            <button data-function="log">
-                log
-            </button>
-
-            <button data-function="ln">
-                ln
-            </button>
-
-            <button data-function="exp">
-                eˣ
-            </button>
-
-            <button data-function="tenpower">
-                10ˣ
-            </button>
-
-
-            <button data-value="π">
-                π
-            </button>
-
-            <button data-value="e">
-                e
-            </button>
-
-            <button data-value="φ">
-                φ
-            </button>
-
-            <button data-function="factorial">
-                n!
-            </button>
-
-            <button data-function="modulus">
-                mod
-            </button>
-
-
-            <button data-function="random">
-                RND
-            </button>
-
-            <button data-function="absolute">
-                |x|
+            <button data-bitwise="SHR">
+                Shift Right
             </button>
 
         </div>
 
 
-
-        <!-- =================================================
-             KEYPAD
-        ================================================== -->
+        <!-- KEYPAD -->
+        <div class="section-title">
+            KEYPAD
+        </div>
 
         <div class="button-grid keypad">
-
 
             <button
                 class="danger"
                 data-action="clear">
-
                 AC
-
             </button>
-
 
             <button
                 class="danger"
                 data-action="backspace">
-
                 ⌫
-
             </button>
-
 
             <button data-value="(">
                 (
             </button>
 
-
             <button
                 class="operator"
                 data-value=")">
-
                 )
-
             </button>
 
 
-            <button data-value="7">
-                7
-            </button>
-
-            <button data-value="8">
-                8
-            </button>
-
-            <button data-value="9">
-                9
-            </button>
+            <button data-value="7">7</button>
+            <button data-value="8">8</button>
+            <button data-value="9">9</button>
 
             <button
                 class="operator"
                 data-value="÷">
-
                 ÷
-
             </button>
 
 
-            <button data-value="4">
-                4
-            </button>
-
-            <button data-value="5">
-                5
-            </button>
-
-            <button data-value="6">
-                6
-            </button>
+            <button data-value="4">4</button>
+            <button data-value="5">5</button>
+            <button data-value="6">6</button>
 
             <button
                 class="operator"
                 data-value="×">
-
                 ×
-
             </button>
 
 
-            <button data-value="1">
-                1
-            </button>
-
-            <button data-value="2">
-                2
-            </button>
-
-            <button data-value="3">
-                3
-            </button>
+            <button data-value="1">1</button>
+            <button data-value="2">2</button>
+            <button data-value="3">3</button>
 
             <button
                 class="operator"
                 data-value="-">
-
                 −
-
             </button>
 
 
             <button
                 class="zero"
                 data-value="0">
-
                 0
-
             </button>
 
             <button data-value=".">
@@ -1413,72 +807,51 @@ footer {
             <button
                 class="operator"
                 data-value="+">
-
                 +
-
             </button>
 
 
             <button
                 class="equals"
                 data-action="equals">
-
                 =
-
             </button>
 
         </div>
 
-
     </section>
 
 
-
-    <!-- =================================================
-         HISTORY
-    ================================================== -->
-
+    <!-- HISTORY -->
     <aside class="card history">
 
         <div class="history-title">
-
             🏁 RACE HISTORY
-
         </div>
-
 
         <div
             id="historyList"
             class="history-list">
-
         </div>
-
 
         <button
             id="clearHistory"
             class="clear-history">
-
             🗑 HAPUS RIWAYAT
-
         </button>
 
     </aside>
 
-
 </main>
-
 
 
 <footer>
 
     © 2026 SINGA BALAP
-
     <br>
-
     SMKN 1 SANDEN • RPL
 
 </footer>
-
 
 
 <script>
@@ -1488,13 +861,10 @@ footer {
 ===================================================== */
 
 let expression = "";
-
 let result = "0";
-
 let memory = 0;
-
 let angleMode = "DEG";
-
+let numberBase = "DEC";
 let history = [];
 
 
@@ -1503,63 +873,47 @@ let history = [];
 ===================================================== */
 
 const expressionDisplay =
-    document.getElementById(
-        "expression"
-    );
+    document.getElementById("expression");
 
 const resultDisplay =
-    document.getElementById(
-        "result"
-    );
+    document.getElementById("result");
 
 const historyList =
-    document.getElementById(
-        "historyList"
-    );
+    document.getElementById("historyList");
 
 const angleButton =
-    document.getElementById(
-        "angleButton"
-    );
+    document.getElementById("angleButton");
 
 const angleModeDisplay =
-    document.getElementById(
-        "angleMode"
-    );
+    document.getElementById("angleMode");
+
+const baseDisplay =
+    document.getElementById("baseDisplay");
 
 
 /* =====================================================
-   FORMAT ANGKA
+   FORMAT
 ===================================================== */
 
-function formatNumber(value) {
+function formatNumber(value){
 
-    if (
-        !Number.isFinite(value)
-    ) {
-
+    if(!Number.isFinite(value)){
         return "ERROR";
-
     }
 
-
-    if (
+    if(
         Math.abs(value) >= 1e12 ||
         (
             Math.abs(value) > 0 &&
             Math.abs(value) < 1e-10
         )
-    ) {
-
+    ){
         return value.toExponential(8);
-
     }
-
 
     return Number(
         value.toFixed(12)
     ).toString();
-
 }
 
 
@@ -1567,45 +921,22 @@ function formatNumber(value) {
    PREPARE EXPRESSION
 ===================================================== */
 
-function prepareExpression(text) {
+function prepareExpression(text){
 
     return text
-
-        .replaceAll(
-            "×",
-            "*"
-        )
-
-        .replaceAll(
-            "÷",
-            "/"
-        )
-
-        .replaceAll(
-            "−",
-            "-"
-        )
-
-        .replaceAll(
-            "π",
-            "Math.PI"
-        )
-
+        .replaceAll("×","*")
+        .replaceAll("÷","/")
+        .replaceAll("−","-")
+        .replaceAll("π","Math.PI")
         .replaceAll(
             "φ",
             "((1 + Math.sqrt(5)) / 2)"
         )
-
         .replace(
             /\be\b/g,
             "Math.E"
         )
-
-        .replace(
-            /\^/g,
-            "**"
-        );
-
+        .replace(/\^/g,"**");
 }
 
 
@@ -1613,90 +944,59 @@ function prepareExpression(text) {
    CALCULATE
 ===================================================== */
 
-function calculate() {
+function calculate(){
 
-    if (!expression) {
-
+    if(!expression){
         return;
-
     }
 
-
-    try {
+    try{
 
         const math =
-            prepareExpression(
-                expression
-            );
-
+            prepareExpression(expression);
 
         const value =
             Function(
                 "return " + math
             )();
 
-
         result =
             formatNumber(value);
 
+        addHistory(
+            expression,
+            result
+        );
 
-        history.unshift({
-
-            expression:
-                expression,
-
-            result:
-                result
-
-        });
-
-
-        if (
-            history.length > 50
-        ) {
-
-            history.pop();
-
-        }
-
-
-        expression =
-            result;
-
+        expression = result;
 
         render();
 
+    }catch(error){
 
-    } catch(error) {
-
-        result =
-            "ERROR";
-
+        result = "ERROR";
         render();
 
     }
-
 }
 
 
 /* =====================================================
-   SCIENTIFIC FUNCTION
+   SCIENTIFIC
 ===================================================== */
 
-function scientificFunction(fn) {
+function scientificFunction(fn){
 
-    try {
+    try{
 
         let number;
 
-
-        if (expression) {
+        if(expression){
 
             const math =
                 prepareExpression(
                     expression
                 );
-
 
             number =
                 Number(
@@ -1705,46 +1005,31 @@ function scientificFunction(fn) {
                     )()
                 );
 
-        } else {
+        }else{
 
             number =
                 Number(result);
 
         }
 
-
         let value;
 
 
-        /* √ */
-
-        if (
-            fn === "sqrt"
-        ) {
+        if(fn === "sqrt"){
 
             value =
                 Math.sqrt(number);
 
         }
 
-
-        /* x² */
-
-        else if (
-            fn === "square"
-        ) {
+        else if(fn === "square"){
 
             value =
                 number ** 2;
 
         }
 
-
-        /* xʸ */
-
-        else if (
-            fn === "power"
-        ) {
+        else if(fn === "power"){
 
             expression += "^";
 
@@ -1754,260 +1039,157 @@ function scientificFunction(fn) {
 
         }
 
-
-        /* 1/x */
-
-        else if (
-            fn === "reciprocal"
-        ) {
+        else if(fn === "reciprocal"){
 
             value =
                 1 / number;
 
         }
 
-
-        /* ± */
-
-        else if (
-            fn === "sign"
-        ) {
+        else if(fn === "sign"){
 
             value =
                 -number;
 
         }
 
-
-        /* sin */
-
-        else if (
-            fn === "sin"
-        ) {
+        else if(fn === "sin"){
 
             value =
                 angleMode === "DEG"
-
                 ?
-
                 Math.sin(
                     number *
                     Math.PI /
                     180
                 )
-
                 :
-
                 Math.sin(number);
 
         }
 
-
-        /* cos */
-
-        else if (
-            fn === "cos"
-        ) {
+        else if(fn === "cos"){
 
             value =
                 angleMode === "DEG"
-
                 ?
-
                 Math.cos(
                     number *
                     Math.PI /
                     180
                 )
-
                 :
-
                 Math.cos(number);
 
         }
 
-
-        /* tan */
-
-        else if (
-            fn === "tan"
-        ) {
+        else if(fn === "tan"){
 
             value =
                 angleMode === "DEG"
-
                 ?
-
                 Math.tan(
                     number *
                     Math.PI /
                     180
                 )
-
                 :
-
                 Math.tan(number);
 
         }
 
-
-        /* asin */
-
-        else if (
-            fn === "asin"
-        ) {
+        else if(fn === "asin"){
 
             value =
                 Math.asin(number);
 
-
-            if (
-                angleMode === "DEG"
-            ) {
-
+            if(angleMode === "DEG"){
                 value =
                     value *
                     180 /
                     Math.PI;
-
             }
 
         }
 
-
-        /* acos */
-
-        else if (
-            fn === "acos"
-        ) {
+        else if(fn === "acos"){
 
             value =
                 Math.acos(number);
 
-
-            if (
-                angleMode === "DEG"
-            ) {
-
+            if(angleMode === "DEG"){
                 value =
                     value *
                     180 /
                     Math.PI;
-
             }
 
         }
 
-
-        /* atan */
-
-        else if (
-            fn === "atan"
-        ) {
+        else if(fn === "atan"){
 
             value =
                 Math.atan(number);
 
-
-            if (
-                angleMode === "DEG"
-            ) {
-
+            if(angleMode === "DEG"){
                 value =
                     value *
                     180 /
                     Math.PI;
-
             }
 
         }
 
-
-        /* log */
-
-        else if (
-            fn === "log"
-        ) {
+        else if(fn === "log"){
 
             value =
                 Math.log10(number);
 
         }
 
-
-        /* ln */
-
-        else if (
-            fn === "ln"
-        ) {
+        else if(fn === "ln"){
 
             value =
                 Math.log(number);
 
         }
 
-
-        /* eˣ */
-
-        else if (
-            fn === "exp"
-        ) {
+        else if(fn === "exp"){
 
             value =
                 Math.exp(number);
 
         }
 
-
-        /* 10ˣ */
-
-        else if (
-            fn === "tenpower"
-        ) {
+        else if(fn === "tenpower"){
 
             value =
                 10 ** number;
 
         }
 
+        else if(fn === "factorial"){
 
-        /* FACTORIAL */
-
-        else if (
-            fn === "factorial"
-        ) {
-
-            if (
+            if(
                 number < 0 ||
                 !Number.isInteger(number)
-            ) {
-
+            ){
                 throw new Error();
-
             }
-
 
             value = 1;
 
-
-            for (
-                let i = 2;
-                i <= number;
+            for(
+                let i=2;
+                i<=number;
                 i++
-            ) {
-
+            ){
                 value *= i;
-
             }
 
         }
 
-
-        /* MODULUS */
-
-        else if (
-            fn === "modulus"
-        ) {
+        else if(fn === "modulus"){
 
             expression += "%";
 
@@ -2017,24 +1199,14 @@ function scientificFunction(fn) {
 
         }
 
-
-        /* RANDOM */
-
-        else if (
-            fn === "random"
-        ) {
+        else if(fn === "random"){
 
             value =
                 Math.random();
 
         }
 
-
-        /* ABSOLUTE */
-
-        else if (
-            fn === "absolute"
-        ) {
+        else if(fn === "absolute"){
 
             value =
                 Math.abs(number);
@@ -2042,9 +1214,7 @@ function scientificFunction(fn) {
         }
 
 
-        if (
-            value !== undefined
-        ) {
+        if(value !== undefined){
 
             result =
                 formatNumber(value);
@@ -2056,19 +1226,409 @@ function scientificFunction(fn) {
 
         }
 
+    }catch(error){
 
-    } catch(error) {
-
-        result =
-            "ERROR";
-
-        expression =
-            "";
-
+        result = "ERROR";
+        expression = "";
         render();
 
     }
+}
 
+
+/* =====================================================
+   PROGRAMMER - GET NUMBER
+===================================================== */
+
+function getProgrammerNumber(){
+
+    if(!expression){
+        return 0;
+    }
+
+    try{
+
+        if(numberBase === "BIN"){
+            return parseInt(
+                expression,
+                2
+            );
+        }
+
+        if(numberBase === "HEX"){
+            return parseInt(
+                expression,
+                16
+            );
+        }
+
+        if(numberBase === "OCT"){
+            return parseInt(
+                expression,
+                8
+            );
+        }
+
+        return parseInt(
+            expression,
+            10
+        );
+
+    }catch(error){
+
+        return 0;
+
+    }
+}
+
+
+/* =====================================================
+   FORMAT PROGRAMMER
+===================================================== */
+
+function formatProgrammerNumber(value){
+
+    value = Math.trunc(value);
+
+    if(numberBase === "BIN"){
+
+        return (value >>> 0)
+            .toString(2);
+
+    }
+
+    if(numberBase === "HEX"){
+
+        return (value >>> 0)
+            .toString(16)
+            .toUpperCase();
+
+    }
+
+    if(numberBase === "OCT"){
+
+        return (value >>> 0)
+            .toString(8);
+
+    }
+
+    return value.toString();
+}
+
+
+/* =====================================================
+   CHANGE BASE
+===================================================== */
+
+function setBase(base){
+
+    try{
+
+        let value =
+            getProgrammerNumber();
+
+        numberBase = base;
+
+        expression =
+            formatProgrammerNumber(
+                value
+            );
+
+        result = expression;
+
+        updateBaseButtons();
+
+        render();
+
+    }catch(error){
+
+        result = "ERROR";
+        render();
+
+    }
+}
+
+
+/* =====================================================
+   UPDATE BASE BUTTON
+===================================================== */
+
+function updateBaseButtons(){
+
+    document
+        .querySelectorAll(
+            ".base-button"
+        )
+        .forEach(button => {
+
+            button.classList.remove(
+                "base-active"
+            );
+
+            if(
+                button.dataset.base ===
+                numberBase
+            ){
+
+                button.classList.add(
+                    "base-active"
+                );
+
+            }
+
+        });
+
+    baseDisplay.textContent =
+        numberBase;
+}
+
+
+/* =====================================================
+   BITWISE
+===================================================== */
+
+function bitwise(operation){
+
+    try{
+
+        let first =
+            getProgrammerNumber();
+
+        let second = 0;
+
+        if(
+            operation !== "NOT"
+        ){
+
+            let input =
+                prompt(
+                    "Masukkan angka kedua:"
+                );
+
+            if(
+                input === null
+            ){
+                return;
+            }
+
+            if(numberBase === "BIN"){
+
+                second =
+                    parseInt(
+                        input,
+                        2
+                    );
+
+            }
+
+            else if(
+                numberBase === "HEX"
+            ){
+
+                second =
+                    parseInt(
+                        input,
+                        16
+                    );
+
+            }
+
+            else if(
+                numberBase === "OCT"
+            ){
+
+                second =
+                    parseInt(
+                        input,
+                        8
+                    );
+
+            }
+
+            else{
+
+                second =
+                    parseInt(
+                        input,
+                        10
+                    );
+
+            }
+
+            if(
+                Number.isNaN(second)
+            ){
+
+                alert(
+                    "Angka kedua tidak valid."
+                );
+
+                return;
+
+            }
+
+        }
+
+
+        let value;
+
+
+        if(operation === "AND"){
+
+            value =
+                first & second;
+
+        }
+
+        else if(operation === "OR"){
+
+            value =
+                first | second;
+
+        }
+
+        else if(operation === "XOR"){
+
+            value =
+                first ^ second;
+
+        }
+
+        else if(operation === "NOT"){
+
+            value =
+                ~first;
+
+        }
+
+        else if(operation === "SHL"){
+
+            value =
+                first << second;
+
+        }
+
+        else if(operation === "SHR"){
+
+            value =
+                first >> second;
+
+        }
+
+
+        expression =
+            formatProgrammerNumber(
+                value
+            );
+
+        result = expression;
+
+        addHistory(
+            operation,
+            result
+        );
+
+        render();
+
+    }catch(error){
+
+        result = "ERROR";
+        render();
+
+    }
+}
+
+
+/* =====================================================
+   MEMORY
+===================================================== */
+
+function memoryFunction(action){
+
+    const current =
+        Number(result);
+
+    if(action === "MC"){
+
+        memory = 0;
+
+    }
+
+    else if(action === "MR"){
+
+        expression =
+            formatNumber(memory);
+
+        result =
+            expression;
+
+    }
+
+    else if(action === "M+"){
+
+        memory += current;
+
+    }
+
+    else if(action === "M-"){
+
+        memory -= current;
+
+    }
+
+    else if(action === "MS"){
+
+        memory = current;
+
+    }
+
+    render();
+}
+
+
+/* =====================================================
+   HISTORY
+===================================================== */
+
+function addHistory(exp,res){
+
+    history.unshift({
+        expression:exp,
+        result:res
+    });
+
+    if(history.length > 50){
+        history.pop();
+    }
+}
+
+
+function renderHistory(){
+
+    if(history.length === 0){
+
+        historyList.innerHTML = `
+            <div style="
+                text-align:center;
+                color:#697386;
+                padding:25px;
+            ">
+                Belum ada perhitungan.
+            </div>
+        `;
+
+        return;
+    }
+
+    historyList.innerHTML =
+        history.map(item => `
+            <div class="history-item">
+                ${item.expression}
+                <strong>
+                    = ${item.result}
+                </strong>
+            </div>
+        `).join("");
 }
 
 
@@ -2076,7 +1636,7 @@ function scientificFunction(fn) {
    RENDER
 ===================================================== */
 
-function render() {
+function render(){
 
     expressionDisplay.textContent =
         expression || "0";
@@ -2086,85 +1646,34 @@ function render() {
 
     renderHistory();
 
+    updateBaseButtons();
 }
 
 
 /* =====================================================
-   HISTORY
-===================================================== */
-
-function renderHistory() {
-
-    if (
-        history.length === 0
-    ) {
-
-        historyList.innerHTML = `
-
-            <div style="
-                text-align:center;
-                color:#697386;
-                padding:25px;
-            ">
-
-                Belum ada perhitungan.
-
-            </div>
-
-        `;
-
-        return;
-
-    }
-
-
-    historyList.innerHTML =
-        history.map(
-            item => `
-
-                <div class="history-item">
-
-                    ${item.expression}
-
-                    <strong>
-                        = ${item.result}
-                    </strong>
-
-                </div>
-
-            `
-        ).join("");
-
-}
-
-
-/* =====================================================
-   BUTTON
+   BUTTON HANDLER
 ===================================================== */
 
 document.addEventListener(
     "click",
-    function(event) {
+    function(event){
 
         const button =
             event.target.closest(
                 "button"
             );
 
-
-        if (!button) {
-
+        if(!button){
             return;
-
         }
 
 
-        /* VALUE */
+        /* ANGKA / OPERATOR */
 
-        if (
+        if(
             button.dataset.value !==
             undefined
-        ) {
+        ){
 
             expression +=
                 button.dataset.value;
@@ -2176,13 +1685,12 @@ document.addEventListener(
 
         /* CLEAR */
 
-        if (
+        if(
             button.dataset.action ===
             "clear"
-        ) {
+        ){
 
             expression = "";
-
             result = "0";
 
             render();
@@ -2192,10 +1700,10 @@ document.addEventListener(
 
         /* BACKSPACE */
 
-        if (
+        if(
             button.dataset.action ===
             "backspace"
-        ) {
+        ){
 
             expression =
                 expression.slice(
@@ -2210,10 +1718,10 @@ document.addEventListener(
 
         /* EQUALS */
 
-        if (
+        if(
             button.dataset.action ===
             "equals"
-        ) {
+        ){
 
             calculate();
 
@@ -2222,9 +1730,9 @@ document.addEventListener(
 
         /* SCIENTIFIC */
 
-        if (
+        if(
             button.dataset.function
-        ) {
+        ){
 
             scientificFunction(
                 button.dataset.function
@@ -2235,12 +1743,38 @@ document.addEventListener(
 
         /* MEMORY */
 
-        if (
+        if(
             button.dataset.memory
-        ) {
+        ){
 
             memoryFunction(
                 button.dataset.memory
+            );
+
+        }
+
+
+        /* BASE */
+
+        if(
+            button.dataset.base
+        ){
+
+            setBase(
+                button.dataset.base
+            );
+
+        }
+
+
+        /* BITWISE */
+
+        if(
+            button.dataset.bitwise
+        ){
+
+            bitwise(
+                button.dataset.bitwise
             );
 
         }
@@ -2250,89 +1784,24 @@ document.addEventListener(
 
 
 /* =====================================================
-   MEMORY
-===================================================== */
-
-function memoryFunction(action) {
-
-    const current =
-        Number(result);
-
-
-    if (
-        action === "MC"
-    ) {
-
-        memory = 0;
-
-    }
-
-
-    else if (
-        action === "MR"
-    ) {
-
-        expression =
-            formatNumber(memory);
-
-        result =
-            formatNumber(memory);
-
-    }
-
-
-    else if (
-        action === "M+"
-    ) {
-
-        memory += current;
-
-    }
-
-
-    else if (
-        action === "M-"
-    ) {
-
-        memory -= current;
-
-    }
-
-
-    else if (
-        action === "MS"
-    ) {
-
-        memory = current;
-
-    }
-
-
-    render();
-
-}
-
-
-/* =====================================================
    DEG / RAD
 ===================================================== */
 
 angleButton.onclick =
-    function() {
+function(){
 
-        angleMode =
-            angleMode === "DEG"
-            ? "RAD"
-            : "DEG";
+    angleMode =
+        angleMode === "DEG"
+        ? "RAD"
+        : "DEG";
 
+    angleButton.textContent =
+        angleMode;
 
-        angleButton.textContent =
-            angleMode;
+    angleModeDisplay.textContent =
+        angleMode;
 
-        angleModeDisplay.textContent =
-            angleMode;
-
-    };
+};
 
 
 /* =====================================================
@@ -2344,7 +1813,7 @@ document
         "clearHistory"
     )
     .onclick =
-    function() {
+    function(){
 
         history = [];
 
@@ -2359,91 +1828,64 @@ document
 
 document.addEventListener(
     "keydown",
-    function(event) {
+    function(event){
 
         const key =
             event.key;
 
 
-        if (
-            /[0-9]/.test(key)
-        ) {
+        if(/[0-9]/.test(key)){
 
             expression += key;
-
             render();
 
         }
 
-
-        else if (
-            key === "."
-        ) {
+        else if(key === "."){
 
             expression += ".";
-
             render();
 
         }
 
-
-        else if (
+        else if(
             key === "+" ||
             key === "-"
-        ) {
+        ){
 
             expression += key;
-
             render();
 
         }
 
-
-        else if (
-            key === "*"
-        ) {
+        else if(key === "*"){
 
             expression += "×";
-
             render();
 
         }
 
-
-        else if (
-            key === "/"
-        ) {
+        else if(key === "/"){
 
             expression += "÷";
-
             render();
 
         }
 
-
-        else if (
-            key === "%"
-        ) {
+        else if(key === "%"){
 
             expression += "%";
-
             render();
 
         }
 
-
-        else if (
-            key === "Enter"
-        ) {
+        else if(key === "Enter"){
 
             calculate();
 
         }
 
-
-        else if (
-            key === "Backspace"
-        ) {
+        else if(key === "Backspace"){
 
             expression =
                 expression.slice(
@@ -2455,13 +1897,9 @@ document.addEventListener(
 
         }
 
-
-        else if (
-            key === "Escape"
-        ) {
+        else if(key === "Escape"){
 
             expression = "";
-
             result = "0";
 
             render();
@@ -2476,6 +1914,7 @@ document.addEventListener(
    START
 ===================================================== */
 
+updateBaseButtons();
 render();
 
 </script>
